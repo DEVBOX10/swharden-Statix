@@ -5,4 +5,4 @@
 **How it works:** Statix crawls a directory tree and whenever it finds `index.md` it generates `index.html` according to `template.html` containing [mustache](https://mustache.github.io) tags.
 
 
-> **⚠️WARNING:** This project is early in development and only intended to be used by the original author at this time
+> **⚠️WARNING:** Statix is early in development and not intended to be used by others at this time
