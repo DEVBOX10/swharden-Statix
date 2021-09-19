@@ -7,19 +7,19 @@ namespace Statix
 {
     public static class Generate
     {
-        /// <summary>
-        /// Walk a folder tree and wherever index.md is found generate an index.html
-        /// </summary>
-        public static void SingleArticlePages(string contentFolder, string templateFolder)
+        public static void SingleArticlePages(string configFilePath)
         {
-            if (!Directory.Exists(contentFolder))
-                throw new ArgumentException($"{nameof(contentFolder)} not found: {contentFolder}");
+            var c = new ConfigFile(configFilePath);
+            SingleArticlePages(c.ContentDirectory, c.ThemeDirectory);
+        }
 
-            if (!Directory.Exists(templateFolder))
-                throw new ArgumentException($"{nameof(templateFolder)} not found: {templateFolder}");
+        private static void SingleArticlePages(DirectoryInfo contentDirectory, DirectoryInfo themeDirectory)
+        {
+            Console.WriteLine($"Searching content: {contentDirectory.FullName}");
+            Console.WriteLine($"Using theme: {themeDirectory.FullName}");
 
-            string[] mdFilePaths = FindIndexMarkdownFiles(contentFolder);
-            string templatePath = Path.Combine(templateFolder, FileName.TEMPLATE_SINGLE_ARTICLE);
+            string[] mdFilePaths = FindIndexMarkdownFiles(contentDirectory);
+            string templatePath = Path.Combine(themeDirectory.FullName, FileName.TEMPLATE_SINGLE_ARTICLE);
             string template = File.ReadAllText(templatePath);
 
             foreach (string mdFilePath in mdFilePaths)
@@ -32,15 +32,12 @@ namespace Statix
             }
         }
 
-        private static string[] FindIndexMarkdownFiles(string folderPath) =>
-            FindIndexMarkdownFiles(new DirectoryInfo(folderPath));
-
         private static string[] FindIndexMarkdownFiles(DirectoryInfo root)
         {
             var mdFilePaths = new List<string>();
 
             string mdFilePath = Path.Combine(root.FullName, FileName.INDEX_MD);
-            if (System.IO.File.Exists(mdFilePath))
+            if (File.Exists(mdFilePath))
                 mdFilePaths.Add(mdFilePath);
 
             foreach (DirectoryInfo dir in root.GetDirectories())
