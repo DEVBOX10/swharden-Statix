@@ -6,3 +6,11 @@
 
 
 > **⚠️WARNING:** Statix is early in development and not intended to be used by others at this time
+
+### Develop with Docker
+
+Docker can be used to serve the static site locally.
+
+* Install [Docker Desktop](https://www.docker.com/products/docker-desktop) 
+* `docker-compose up -d`
+* Go to http://localhost:8080
