@@ -26,3 +26,14 @@ Use Docker to preview the site locally:
 **Statix can run locally**, allowing you to generate a static website from local content and upload it using traditional methods like FTP/SFTP.
 
 **Statix can run in the cloud,** allowing static sites to be built from GitHub repositories and deployed automatically in response to GitHub actions.
+
+## Features
+
+Not all are implemented yet...
+
+* ✔️ `![](image.jpg)` is embedded and clickable
+* ❌ `![](YouTubeURL)` becomes an embedded video
+* ❌ `![](TOC)` inserts a table of contents
+* ❌ Headings are automatically given named anchors
+* ❌ Automatic syntax highlighting
+* ✔️ GitHub styling using Bootstrap

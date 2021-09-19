@@ -15,7 +15,7 @@ namespace Statix
         public string Description { get; private set; }
         public string[] Tags { get; private set; } = new string[0];
         public string Date { get; private set; }
-        public readonly bool Exists;
+        public int FirstContentLine { get; private set; }
 
         public Header(string md)
         {
@@ -38,9 +38,14 @@ namespace Statix
             for (int i = 1; i < lines.Length; i++)
             {
                 if (lines[i].Trim() == "---")
+                {
+                    FirstContentLine = i + 1;
                     break;
+                }
                 else
+                {
                     ProcessHeaderLine(lines[i]);
+                }
             }
         }
 

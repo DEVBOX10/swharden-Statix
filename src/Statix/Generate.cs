@@ -2,31 +2,61 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 
 namespace Statix
 {
     public static class Generate
     {
+        public static readonly string FILENAME_INDEX_HTML = "index.html";
+        public static readonly string FILENAME_INDEX_MD = "index.md";
+
         public static void SingleArticlePages(DirectoryInfo contentDirectory, DirectoryInfo themeDirectory)
         {
+            Plugin.IMarkdownPlugin[] markdownPlugins =
+            {
+                new Plugin.ClickableImages(),
+            };
+
+            Plugin.IHtmlPlugin[] htmlPlugins =
+            {
+            };
+
             Stopwatch sw = Stopwatch.StartNew();
 
             Console.WriteLine($"Loading templates for theme: {themeDirectory.FullName}");
-            string templatePath = Path.Combine(themeDirectory.FullName, FileName.TEMPLATE_SINGLE_ARTICLE);
-            string template = File.ReadAllText(templatePath);
+            Page.SingleArticle page = new Page.SingleArticle(themeDirectory);
 
             Console.WriteLine($"Searching directory tree: {contentDirectory.FullName}");
             string[] mdFilePaths = FindIndexMarkdownFiles(contentDirectory);
 
             for (int i = 0; i < mdFilePaths.Length; i++)
             {
+                // read markdown file
                 string mdFilePath = mdFilePaths[i];
-                string md = File.ReadAllText(mdFilePath);
                 Console.WriteLine($"[{i + 1}/{mdFilePaths.Length}] {mdFilePath}");
-                SingleArticlePage pg = new SingleArticlePage(md, template);
-                string outPath = Path.Combine(Path.GetDirectoryName(mdFilePath), FileName.INDEX_HTML);
-                File.WriteAllText(outPath, pg.HTML);
+                string[] mdLines = File.ReadAllLines(mdFilePath);
+
+                // parse the header and remove it from the markdown lines
+                Header header = new Header(mdLines);
+                mdLines = mdLines[header.FirstContentLine..];
+
+                // apply markdown plugins
+                foreach (var p in markdownPlugins)
+                    mdLines = p.Apply(mdLines);
+
+                // convert to HTML
+                string md = string.Join('\n', mdLines);
+                string html = Markdig.Markdown.ToHtml(md);
+
+                // apply HTML plugins
+                foreach (var p in htmlPlugins)
+                    html = p.Apply(html);
+
+                // wrap the article in the page (applying the template)
+                html = page.GetHtml(header.Title, header.Description, html, sw);
+
+                string outPath = Path.Combine(Path.GetDirectoryName(mdFilePath), FILENAME_INDEX_HTML);
+                File.WriteAllText(outPath, html);
             }
 
             Console.WriteLine($"Generated {mdFilePaths.Length} pages in {sw.Elapsed.TotalMilliseconds:F3} milliseconds.");
@@ -36,7 +66,7 @@ namespace Statix
         {
             var mdFilePaths = new List<string>();
 
-            string mdFilePath = Path.Combine(root.FullName, FileName.INDEX_MD);
+            string mdFilePath = Path.Combine(root.FullName, FILENAME_INDEX_MD);
             if (File.Exists(mdFilePath))
                 mdFilePaths.Add(mdFilePath);
 
