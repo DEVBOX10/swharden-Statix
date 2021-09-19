@@ -15,6 +15,7 @@ namespace Statix
             Plugin.IMarkdownPlugin[] markdownPlugins =
             {
                 new Plugin.ClickableImages(),
+                new Plugin.YouTube(),
             };
 
             Plugin.IHtmlPlugin[] htmlPlugins =
