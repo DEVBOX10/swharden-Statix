@@ -11,8 +11,15 @@ namespace Statix.Plugin
 
         public string[] Apply(string[] lines)
         {
+            bool inCodeBlock = false;
             for (int i = 0; i < lines.Length; i++)
             {
+                if (lines[i].StartsWith("```"))
+                    inCodeBlock = !inCodeBlock;
+
+                if (inCodeBlock)
+                    continue;
+
                 if (IMarkdownPlugin.IsMagicLine(lines[i]))
                 {
                     string url = IMarkdownPlugin.MagicUrl(lines[i]);
