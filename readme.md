@@ -1,7 +1,5 @@
 # Statix
 
-[![Build Status](https://dev.azure.com/swharden/swharden/_apis/build/status/swharden.Statix?branchName=main)](https://dev.azure.com/swharden/swharden/_build/latest?definitionId=24&branchName=main)
-
 **Statix is a C# static site generator** designed to create a flat-file websites from folders containing markdown files. Statix is ideal for creating small websites from GitHub repositories. Statix is similar to [Palila](https://github.com/swharden/Palila) (Python) and [md2html](https://github.com/swharden/md2html-php) (PHP).
 
 **How it works:** Statix crawls a directory tree and whenever it finds `index.md` it generates `index.html` according to a `template.html` containing [mustache](https://mustache.github.io) tags.
