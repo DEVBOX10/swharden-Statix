@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -7,29 +8,28 @@ namespace Statix
 {
     public static class Generate
     {
-        public static void SingleArticlePages(string configFilePath)
+        public static void SingleArticlePages(DirectoryInfo contentDirectory, DirectoryInfo themeDirectory)
         {
-            var c = new ConfigFile(configFilePath);
-            SingleArticlePages(c.ContentDirectory, c.ThemeDirectory);
-        }
+            Stopwatch sw = Stopwatch.StartNew();
 
-        private static void SingleArticlePages(DirectoryInfo contentDirectory, DirectoryInfo themeDirectory)
-        {
-            Console.WriteLine($"Searching content: {contentDirectory.FullName}");
-            Console.WriteLine($"Using theme: {themeDirectory.FullName}");
-
-            string[] mdFilePaths = FindIndexMarkdownFiles(contentDirectory);
+            Console.WriteLine($"Loading templates for theme: {themeDirectory.FullName}");
             string templatePath = Path.Combine(themeDirectory.FullName, FileName.TEMPLATE_SINGLE_ARTICLE);
             string template = File.ReadAllText(templatePath);
 
-            foreach (string mdFilePath in mdFilePaths)
+            Console.WriteLine($"Searching directory tree: {contentDirectory.FullName}");
+            string[] mdFilePaths = FindIndexMarkdownFiles(contentDirectory);
+
+            for (int i = 0; i < mdFilePaths.Length; i++)
             {
+                string mdFilePath = mdFilePaths[i];
                 string md = File.ReadAllText(mdFilePath);
+                Console.WriteLine($"[{i + 1}/{mdFilePaths.Length}] {mdFilePath}");
                 SingleArticlePage pg = new SingleArticlePage(md, template);
                 string outPath = Path.Combine(Path.GetDirectoryName(mdFilePath), FileName.INDEX_HTML);
-                Console.WriteLine(outPath);
                 File.WriteAllText(outPath, pg.HTML);
             }
+
+            Console.WriteLine($"Generated {mdFilePaths.Length} pages in {sw.Elapsed.TotalMilliseconds:F3} milliseconds.");
         }
 
         private static string[] FindIndexMarkdownFiles(DirectoryInfo root)

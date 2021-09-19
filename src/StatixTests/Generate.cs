@@ -8,12 +8,13 @@ namespace StatixTests
 {
     class Generate
     {
-        private readonly string CONFIG_PATH = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/config.json");
+        private readonly DirectoryInfo CONTENT = new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/content"));
+        private readonly DirectoryInfo THEME = new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/themes/statixdemo"));
 
         [Test]
         public void Test_Build_SampleSite()
         {
-            Statix.Generate.SingleArticlePages(CONFIG_PATH);
+            Statix.Generate.SingleArticlePages(CONTENT, THEME);
         }
     }
 }
