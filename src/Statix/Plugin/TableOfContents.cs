@@ -13,6 +13,10 @@ namespace Statix.Plugin
             foreach (int i in linesWithoutCode)
             {
                 string line = lines[i].Trim();
+
+                if (line == "![](TOC)")
+                    headings.Clear();
+
                 if (line.StartsWith("#") && line.Contains("# "))
                     headings.Add(Heading.FromMarkdown(line));
             }
@@ -23,7 +27,14 @@ namespace Statix.Plugin
                 for (int i = 0; i < heading.Level - 1; i++)
                     sb.Append("&nbsp;&nbsp;");
 
-                sb.AppendLine($"<a href='#{heading.URL}'>{heading.Title}</a><br>");
+                sb.Append($"<a href='#{heading.URL}'>");
+
+                if (heading.Level <= 2)
+                    sb.Append($"<b>{heading.Title}</b>");
+                else
+                    sb.Append($"{heading.Title}");
+
+                sb.Append($"</a><br>\n");
             }
 
             foreach (int i in linesWithoutCode)
