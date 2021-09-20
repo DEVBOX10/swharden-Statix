@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Markdig;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -50,7 +51,8 @@ namespace Statix
 
                 // convert to HTML
                 string md = string.Join('\n', mdLines);
-                string html = Markdig.Markdown.ToHtml(md);
+                var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+                string html = Markdown.ToHtml(md, pipeline);
 
                 // apply HTML plugins
                 string[] htmlLines = html.Split("\n");

@@ -12,7 +12,11 @@ namespace Statix.Plugin
         public static bool IsMagicLine(string markdownLine)
         {
             markdownLine = markdownLine.Trim();
-            return markdownLine.StartsWith("![](") && markdownLine.EndsWith(")");
+            const string magicStart = "![](";
+            const string magicEnd = ")";
+            return markdownLine.StartsWith(magicStart) &&
+                markdownLine.EndsWith(magicEnd) &&
+                markdownLine.LastIndexOf(magicStart) == 0;
         }
 
         public static string MagicUrl(string markdownLine)

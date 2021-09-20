@@ -33,5 +33,6 @@ Use Docker to preview the site locally:
 * ✔️ `![](YouTubeURL)` becomes an embedded video
 * ✔️ `![](TOC)` inserts a table of contents
 * ✔️ Headings are automatically given named anchors
+* ✔️ Github style tables
 * ✔️ Automatic syntax highlighting
 * ✔️ GitHub styling using Bootstrap
