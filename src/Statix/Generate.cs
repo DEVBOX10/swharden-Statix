@@ -20,6 +20,7 @@ namespace Statix
 
             Plugin.IHtmlPlugin[] htmlPlugins =
             {
+                new Plugin.HeadingAnchors(),
             };
 
             Stopwatch sw = Stopwatch.StartNew();
@@ -51,8 +52,10 @@ namespace Statix
                 string html = Markdig.Markdown.ToHtml(md);
 
                 // apply HTML plugins
+                string[] htmlLines = html.Split("\n");
                 foreach (var p in htmlPlugins)
-                    html = p.Apply(html);
+                    htmlLines = p.Apply(htmlLines);
+                html = string.Join("\n", htmlLines);
 
                 // wrap the article in the page (applying the template)
                 html = page.GetHtml(header.Title, header.Description, html, sw);

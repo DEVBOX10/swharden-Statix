@@ -6,6 +6,6 @@ namespace Statix.Plugin
 {
     public interface IHtmlPlugin
     {
-        string Apply(string html);
+        string[] Apply(string[] lines);
     }
 }

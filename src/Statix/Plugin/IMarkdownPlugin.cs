@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Statix.Plugin
@@ -32,7 +33,7 @@ namespace Statix.Plugin
                     continue;
                 }
 
-                if (inCodeBlock)
+                if (!inCodeBlock)
                     lines.Add(i);
             }
 
