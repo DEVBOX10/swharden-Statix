@@ -33,7 +33,7 @@ Not all are implemented yet...
 
 * ✔️ `![](image.jpg)` is embedded and clickable
 * ✔️ `![](YouTubeURL)` becomes an embedded video
-* ❌ `![](TOC)` inserts a table of contents
+* ✔️ `![](TOC)` inserts a table of contents
 * ✔️ Headings are automatically given named anchors
 * ❌ Automatic syntax highlighting
 * ✔️ GitHub styling using Bootstrap

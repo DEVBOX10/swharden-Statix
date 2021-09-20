@@ -16,6 +16,7 @@ namespace Statix
             {
                 new Plugin.ClickableImages(),
                 new Plugin.YouTube(),
+                new Plugin.TableOfContents(),
             };
 
             Plugin.IHtmlPlugin[] htmlPlugins =
