@@ -29,7 +29,13 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
         working-directory: ${{env.working-directory}}
       - name: 🌎 Build Website
-        run: dotnet run --project ./src/Statix --content ./sample/content --theme ./sample/themes/statixdemo --source https://github.com/swharden/Statix/blob/main/sample/content --site https://statix.swharden.com
+        run: |
+          dotnet run \
+            --project './src/Statix' \
+            --content './sample/content' \
+            --theme './sample/themes/statixdemo' \
+            --source 'https://github.com/swharden/Statix/blob/main/sample/content' \
+            --site 'https://statix.swharden.com'
       - name: 🚀 Deploy Website
         uses: azure/CLI@v1
         with:
