@@ -30,10 +30,19 @@ jobs:
         working-directory: ${{env.working-directory}}
       - name: 🌎 Build Website
         run: |
-          dotnet run --project ./src/Statix --content ./sample/content --theme ./sample/themes/statixdemo --source https://github.com/swharden/Statix/blob/main/sample/content --site https://statix.swharden.com
+          dotnet run \
+            --project ./src/Statix \
+            --content ./sample/content \
+            --theme ./sample/themes/statixdemo \
+            --source https://github.com/swharden/Statix/blob/main/sample/content \
+            --site https://statix.swharden.com
       - name: 🚀 Deploy Website
         uses: azure/CLI@v1
         with:
           azcliversion: latest
           inlineScript: |
-            az storage blob upload-batch --destination '$web' --source './sample/content' --connection-string '${{ secrets.BLOB_CONNECTION_STRING }}'
+            az storage blob upload-batch \
+              --destination '$web' \
+              --source './sample/content' \
+              --connection-string '${{ secrets.BLOB_CONNECTION_STRING }}' \
+              --output none
