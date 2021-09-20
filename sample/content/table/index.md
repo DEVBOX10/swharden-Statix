@@ -27,7 +27,7 @@ Cl         | -1     | 10           | 148.8
 
 ### Table with Markdown
 
-```
+```text
 Code       | Effect
 -----------|----------
 `*bold*`   | *bold*
@@ -41,7 +41,7 @@ Code       | Effect
 
 ### Table with Images
 
-```
+```text
 Image One               | Image Two
 ------------------------|------------------------
 ![](../images/small.jpg)|![](../images/small.jpg)
