@@ -1,4 +1,4 @@
-name: Build, test, deploy
+name: Build, test, and deploy 🚀
 
 on:
   push:
@@ -31,5 +31,6 @@ jobs:
       - name: Deploy Website
         uses: azure/CLI@v1
         with:
+          azcliversion: 2.0.72
           inlineScript: |
             az storage blob upload-batch --destination $web --source ./sample/content --connection-string <BLOB_CONNECTION_STRING>
