@@ -1,6 +1,6 @@
 # Statix
 
-[![](https://img.shields.io/github/workflow/status/swharden/Statix/build%20test%20deploy)](https://github.com/swharden/Statix/actions/workflows/build-test-deploy.yaml)
+[![](https://img.shields.io/github/workflow/status/swharden/Statix/build%20test%20and%20deploy)](https://github.com/swharden/Statix/actions/workflows/build-test-deploy.yaml)
 
 **Statix is a C# static site generator** designed to create a flat-file websites from folders containing markdown files. Statix is ideal for creating small websites from GitHub repositories.
 
