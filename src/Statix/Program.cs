@@ -17,10 +17,10 @@ namespace Statix
             [Option(longName: "theme", Required = true, HelpText = "path of the theme folder (containing HTML templates)")]
             public string Theme { get; set; }
 
-            [Option(longName: "source", Required = true, HelpText = "URL of the content source code")]
+            [Option(longName: "urlSource", Required = true, HelpText = "URL of the content source code")]
             public string SourceUrl { get; set; }
 
-            [Option(longName: "site", Required = true, HelpText = "URL of the content on the web")]
+            [Option(longName: "urlSite", Required = true, HelpText = "URL of the content on the web")]
             public string SiteUrl { get; set; }
         }
 
