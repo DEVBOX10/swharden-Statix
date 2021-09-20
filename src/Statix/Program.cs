@@ -42,7 +42,8 @@ namespace Statix
             }
 
             Parser.Default.ParseArguments<CommandLineOptions>(args)
-              .WithParsed(RunOptions);
+              .WithParsed(RunOptions)
+              .WithNotParsed(HandleParseError);
         }
 
         static void RunOptions(CommandLineOptions opts)
@@ -52,6 +53,11 @@ namespace Statix
                 themeDirectory: new DirectoryInfo(opts.Theme),
                 sourceUrlBase: opts.SourceUrl,
                 siteUrlBase: opts.SiteUrl);
+        }
+
+        static void HandleParseError(IEnumerable<Error> errs)
+        {
+            throw new InvalidOperationException("command parsing error");
         }
     }
 }
