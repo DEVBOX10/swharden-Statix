@@ -1,4 +1,4 @@
-name: Build 🛠️ Test 🧪 Deploy 🚀
+name: build test and deploy
 
 on:
   push:
