@@ -6,7 +6,7 @@
 
 **How it works:** Statix crawls a directory tree and whenever it finds `index.md` it generates `index.html` according to a `template.html` containing [mustache](https://mustache.github.io) tags.
 
-**Deploy with GitHub Actions:** [build-test-deploy.yaml](.github\workflows\build-test-deploy.yaml) builds the project, runs the tests, generates the website, and pushes it to static website blob storage in Azure. https://statix.swharden.com
+**Deploy with GitHub Actions:** [build-test-deploy.yaml](.github/workflows/build-test-deploy.yaml) builds the project, runs the tests, generates the website, and pushes it to static website blob storage in Azure. https://statix.swharden.com
 
 **Similar projects:** [Palila](https://github.com/swharden/Palila) (Python) and [md2html](https://github.com/swharden/md2html-php) (PHP)
 
