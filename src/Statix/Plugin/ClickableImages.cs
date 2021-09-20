@@ -25,7 +25,7 @@ namespace Statix.Plugin
                     string url = IMarkdownPlugin.MagicUrl(lines[i]);
                     string extension = System.IO.Path.GetExtension(url).ToLower();
                     if (ImageExtensions.Contains(extension))
-                        lines[i] = $"<a href='{url}'><img src='{url}' /></a>";
+                        lines[i] = $"<a href='{url}' class='img-fluid'><img src='{url}' /></a>";
                 }
             }
             return lines;

@@ -20,7 +20,8 @@ namespace StatixTests
         {
             string[] linesIn = new string[] { "![](magic.jpg)" };
             string[] linesOut = new Statix.Plugin.ClickableImages().Apply(linesIn);
-            Assert.AreEqual("<a href='magic.jpg'><img src='magic.jpg' /></a>", linesOut[0]);
+            Assert.That(linesOut[0].Contains("<a href='magic.jpg'"));
+            Assert.That(linesOut[0].Contains("<img src='magic.jpg'"));
         }
     }
 }
