@@ -8,13 +8,14 @@ namespace StatixTests
 {
     class Generate
     {
-        private readonly DirectoryInfo CONTENT = new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/content"));
-        private readonly DirectoryInfo THEME = new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/themes/statixdemo"));
-        private readonly string SOURCE_URL = "https://github.com/swharden/Statix/tree/main/sample/content";
         [Test]
         public void Test_Build_SampleSite()
         {
-            Statix.Generate.SingleArticlePages(CONTENT, THEME, SOURCE_URL);
+            Statix.Generate.SingleArticlePages(
+                contentDirectory: new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/content")),
+                themeDirectory: new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/themes/statixdemo")),
+                sourceUrlBase: "https://github.com/swharden/Statix/tree/main/sample/content",
+                siteUrlBase: "http://localhost:8080");
         }
     }
 }

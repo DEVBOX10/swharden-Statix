@@ -11,7 +11,8 @@ namespace Statix
         public static readonly string FILENAME_INDEX_HTML = "index.html";
         public static readonly string FILENAME_INDEX_MD = "index.md";
 
-        public static void SingleArticlePages(DirectoryInfo contentDirectory, DirectoryInfo themeDirectory, string sourceUrlBase)
+        public static void SingleArticlePages(DirectoryInfo contentDirectory, DirectoryInfo themeDirectory,
+            string sourceUrlBase, string siteUrlBase)
         {
             Plugin.IMarkdownPlugin[] markdownPlugins =
             {
@@ -63,7 +64,8 @@ namespace Statix
                 // wrap the article in the page (applying the template)
                 string relativePath = mdFilePath.Replace(contentDirectory.FullName, "");
                 string sourceUrl = sourceUrlBase.Trim('/') + "/" + relativePath.Trim('/');
-                html = page.GetHtml(header.Title, header.Description, html, sourceUrl);
+                string pageBaseUrl = siteUrlBase.Trim('/') + "/" + relativePath.Trim('/');
+                html = page.GetHtml(header.Title, header.Description, html, sourceUrl, pageBaseUrl);
 
                 string outPath = Path.Combine(Path.GetDirectoryName(mdFilePath), FILENAME_INDEX_HTML);
                 File.WriteAllText(outPath, html);

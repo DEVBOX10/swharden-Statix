@@ -19,6 +19,9 @@ namespace Statix
 
             [Option(longName: "source", Required = true, HelpText = "URL of the content source code")]
             public string SourceUrl { get; set; }
+
+            [Option(longName: "site", Required = true, HelpText = "URL of the content on the web")]
+            public string SiteUrl { get; set; }
         }
 
         static void Main(string[] args)
@@ -32,6 +35,7 @@ namespace Statix
                     Content = Path.GetFullPath(exeFolderPath + "/../../../../../sample/content"),
                     Theme = Path.GetFullPath(exeFolderPath + "/../../../../../sample/themes/statixdemo"),
                     SourceUrl = "https://github.com/swharden/Statix/tree/main/sample/content",
+                    SiteUrl = "http://localhost:8080",
                 };
                 RunOptions(opts);
                 return;
@@ -46,7 +50,8 @@ namespace Statix
             Generate.SingleArticlePages(
                 contentDirectory: new DirectoryInfo(opts.Content),
                 themeDirectory: new DirectoryInfo(opts.Theme),
-                sourceUrlBase: opts.SourceUrl);
+                sourceUrlBase: opts.SourceUrl,
+                siteUrlBase: opts.SiteUrl);
         }
     }
 }

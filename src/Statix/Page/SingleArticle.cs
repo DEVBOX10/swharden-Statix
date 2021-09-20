@@ -18,11 +18,12 @@ namespace Statix.Page
             TemplateHtml = File.ReadAllText(templateFile);
         }
 
-        public string GetHtml(string title, string description, string content, string sourceUrl)
+        public string GetHtml(string title, string description, string content, string sourceUrl, string baseUrl)
         {
             string html = TemplateHtml;
             html = html.Replace("{{TITLE}}", title);
             html = html.Replace("{{DESCRIPTION}}", description);
+            html = html.Replace("{{URL_BASE}}", baseUrl);
             html = html.Replace("{{CONTENT}}", content);
             html = html.Replace("{{UTC_DATE}}", DateTime.UtcNow.ToShortDateString());
             html = html.Replace("{{UTC_TIME}}", DateTime.UtcNow.ToShortTimeString());

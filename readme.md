@@ -27,13 +27,17 @@
 
 ## Quickstart
 
-Build the sample website from the console:
+Statix is a console application that accepts command line arguments to indicate folder paths and URLs. 
 
 ```
-dotnet run --project src/Statix --content sample/content --theme sample/themes/statixdemo --source https://github.com/swharden/Statix/blob/main/sample/content
+dotnet run --project ./src/Statix
 ```
 
-Use Docker to preview the site locally:
-* Install [Docker Desktop](https://www.docker.com/products/docker-desktop) 
+### Build with GitHub Actions
+* Refer to [`build-test-deploy.yaml`](.github/workflows/build-test-deploy.yaml) which generates a site with absolute URLs
+
+### Build and Serve Locally
+* Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
 * `docker-compose up -d`
+* [`build.bat`](build.bat) generates a local site with relative URLs
 * Go to http://localhost:8080
