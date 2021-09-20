@@ -20,19 +20,16 @@ jobs:
         with:
           dotnet-version: "3.1.x"
       - name: ✨ NuGet Restore
-        run: dotnet restore --project ./src/Statix
+        run: dotnet restore
+        working-directory: ${{env.working-directory}}
       - name: 🛠️ Build Solution
-        run: dotnet build --project ./src/Statix --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore
+        working-directory: ${{env.working-directory}}
       - name: 🧪 Run Tests
-        run: dotnet test --project ./src/Statix --no-restore --verbosity normal
+        run: dotnet test --no-restore --verbosity normal
+        working-directory: ${{env.working-directory}}
       - name: 🌎 Build Website
-        run: |
-          dotnet run \
-            --project ./src/Statix \
-            --content ./sample/content \
-            --theme ./sample/themes/statixdemo \
-            --source https://github.com/swharden/Statix/blob/main/sample/content \
-            --site https://statix.swharden.com
+        run: dotnet run --project ./src/Statix --content ./sample/content --theme ./sample/themes/statixdemo --source https://github.com/swharden/Statix/blob/main/sample/content --site https://statix.swharden.com
       - name: 🚀 Deploy Website
         uses: azure/CLI@v1
         with:
