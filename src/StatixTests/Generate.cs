@@ -10,11 +10,11 @@ namespace StatixTests
     {
         private readonly DirectoryInfo CONTENT = new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/content"));
         private readonly DirectoryInfo THEME = new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/themes/statixdemo"));
-
+        private readonly string SOURCE_URL = "https://github.com/swharden/Statix/tree/main/sample/content";
         [Test]
         public void Test_Build_SampleSite()
         {
-            Statix.Generate.SingleArticlePages(CONTENT, THEME);
+            Statix.Generate.SingleArticlePages(CONTENT, THEME, SOURCE_URL);
         }
     }
 }
