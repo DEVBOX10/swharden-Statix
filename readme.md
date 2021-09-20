@@ -33,11 +33,11 @@ Statix is a console application that accepts command line arguments to indicate 
 dotnet run --project ./src/Statix
 ```
 
-### Build with GitHub Actions
-* Refer to [`build-test-deploy.yaml`](.github/workflows/build-test-deploy.yaml) which generates a site with absolute URLs
-
 ### Build and Serve Locally
 * Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
 * `docker-compose up -d`
 * [`build.bat`](build.bat) generates a local site with relative URLs
 * Go to http://localhost:8080
+
+### Build and Deploy with GitHub Actions
+* Refer to [`build-test-deploy.yaml`](.github/workflows/build-test-deploy.yaml) which generates a site with absolute URLs
