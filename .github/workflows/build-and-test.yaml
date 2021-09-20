@@ -1,4 +1,4 @@
-name: Build, test, and deploy 🚀
+name: Build 🛠️ Test 🧪 Deploy 🚀
 
 on:
   push:
@@ -13,24 +13,24 @@ jobs:
     env:
       working-directory: ./src
     steps:
-      - name: Checkout
+      - name: Checkout 🛒
         uses: actions/checkout@v2
-      - name: Use .NET Core 3.1
+      - name: Use .NET Core 3.1 🦄
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "3.1.x"
-      - name: NuGet Restore
+      - name: NuGet Restore ✨
         run: dotnet restore
         working-directory: ${{env.working-directory}}
-      - name: Build Solution
+      - name: Build Solution 🛠️
         run: dotnet build --configuration Release --no-restore
         working-directory: ${{env.working-directory}}
-      - name: Run Tests
+      - name: Run Tests 🧪
         run: dotnet test --no-restore --verbosity normal
         working-directory: ${{env.working-directory}}
-      - name: Deploy Website
+      - name: Deploy Website 🚀
         uses: azure/CLI@v1
         with:
           azcliversion: 2.0.72
           inlineScript: |
-            az storage blob upload-batch --destination $web --source ./sample/content --connection-string <BLOB_CONNECTION_STRING>
+            az storage blob upload-batch --destination $web --source ./sample/content --connection-string "<BLOB_CONNECTION_STRING>"
