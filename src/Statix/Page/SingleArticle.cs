@@ -17,13 +17,16 @@ namespace Statix.Page
             string templateFile = Path.Combine(themeDirectory.FullName, FILENAME);
             TemplateHtml = File.ReadAllText(templateFile);
         }
-        public string GetHtml(string title, string description, string content, Stopwatch sw)
+
+        public string GetHtml(string title, string description, string content, string sourceUrl)
         {
-            string html = TemplateHtml.Replace("{{ ", "{{").Replace(" }}", "}}");
-            html = html.Replace("{{title}}", title);
-            html = html.Replace("{{description}}", description);
-            html = html.Replace("{{buildTimeMilliseconds}}", $"{sw.Elapsed.TotalMilliseconds:F3}");
-            html = html.Replace("{{content}}", content);
+            string html = TemplateHtml;
+            html = html.Replace("{{TITLE}}", title);
+            html = html.Replace("{{DESCRIPTION}}", description);
+            html = html.Replace("{{CONTENT}}", content);
+            html = html.Replace("{{UTC_DATE}}", DateTime.UtcNow.ToShortDateString());
+            html = html.Replace("{{UTC_TIME}}", DateTime.UtcNow.ToShortTimeString());
+            html = html.Replace("{{URL_SOURCE}}", sourceUrl);
             return html;
         }
     }

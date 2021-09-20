@@ -13,11 +13,12 @@ namespace Statix
         {
             [Option(longName: "content", Required = true, HelpText = "path of the root website (containing markdown files)")]
             public string Content { get; set; }
-            public DirectoryInfo ContentDirectory => new DirectoryInfo(Content);
 
             [Option(longName: "theme", Required = true, HelpText = "path of the theme folder (containing HTML templates)")]
             public string Theme { get; set; }
-            public DirectoryInfo ThemeDirectory => new DirectoryInfo(Theme);
+
+            [Option(longName: "source", Required = true, HelpText = "URL of the content source code")]
+            public string SourceUrl { get; set; }
         }
 
         static void Main(string[] args)
@@ -30,6 +31,7 @@ namespace Statix
                 {
                     Content = Path.GetFullPath(exeFolderPath + "/../../../../../sample/content"),
                     Theme = Path.GetFullPath(exeFolderPath + "/../../../../../sample/themes/statixdemo"),
+                    SourceUrl = "https://github.com/swharden/Statix/tree/main/sample/content",
                 };
                 RunOptions(opts);
                 return;
@@ -41,7 +43,10 @@ namespace Statix
 
         static void RunOptions(CommandLineOptions opts)
         {
-            Generate.SingleArticlePages(opts.ContentDirectory, opts.ThemeDirectory);
+            Generate.SingleArticlePages(
+                contentDirectory: new DirectoryInfo(opts.Content),
+                themeDirectory: new DirectoryInfo(opts.Theme),
+                sourceUrlBase: opts.SourceUrl);
         }
     }
 }

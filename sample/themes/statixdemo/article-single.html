@@ -12,8 +12,8 @@
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.0.1/build/highlight.min.js"></script>
     <script defer>hljs.highlightAll();</script>
 
-    <title>{{title}}</title>
-    <meta name="description" content="{{description}}">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{DESCRIPTION}}">
 
     <style>
         a {
@@ -87,10 +87,11 @@
                             Features
                         </a>
                         <ul class="dropdown-menu shadow-sm" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/code">Syntax Highlighting</a></li>
                             <li><a class="dropdown-item" href="/images">Embedded Images</a></li>
                             <li><a class="dropdown-item" href="/videos">Embedded Videos</a></li>
+                            <li><a class="dropdown-item" href="/table">Tables</a></li>
                             <li><a class="dropdown-item" href="/toc">Table of Contents</a></li>
+                            <li><a class="dropdown-item" href="/code">Syntax Highlighting</a></li>
                         </ul>
                     </li>
 
@@ -117,15 +118,15 @@
     <div class="container mx-auto" style="max-width: 1000px;">
         <div class="bg-white border shadow-sm px-3 py-2 rounded-3 my-3">
             <article>
-                {{content}}
+                {{CONTENT}}
             </article>
         </div>
 
         <footer>
-            <div class="text-center text-muted">
+            <div class="text-center text-muted mt-5">
                 <a class="text-muted" href='https://github.com/swharden/Statix'>Statix</a>
-                generated this page on {{UTC_DATE}} at {{UTC_TIME}} UTC | 
-                <a class="text-muted" href='{{URL_SOURCE_BASE}}/{{URL_PAGE}}'>view source</a>
+                generated this page on {{UTC_DATE}} at {{UTC_TIME}} UTC
+                (<a class="text-muted" href='{{URL_SOURCE}}'>view source</a>)
             </div>
         </footer>
 
