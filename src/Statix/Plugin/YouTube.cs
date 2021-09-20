@@ -6,17 +6,10 @@ namespace Statix.Plugin
 {
     class YouTube : IMarkdownPlugin
     {
-        public string[] Apply(string[] lines)
+        public string[] Apply(string[] lines, int[] linesWithoutCode)
         {
-            bool inCodeBlock = false;
-            for (int i = 0; i < lines.Length; i++)
+            foreach (int i in linesWithoutCode)
             {
-                if (lines[i].StartsWith("```"))
-                    inCodeBlock = !inCodeBlock;
-
-                if (inCodeBlock)
-                    continue;
-
                 if (IMarkdownPlugin.IsMagicLine(lines[i]))
                 {
                     string url = IMarkdownPlugin.MagicUrl(lines[i]);

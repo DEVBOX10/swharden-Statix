@@ -7,21 +7,17 @@ namespace StatixTests
 {
     class Plugins
     {
-        [Test]
-        public void Test_Magic_Markdown()
+        [TestCase("  ![](magic.jpg)  ", true, "magic.jpg")]
+        [TestCase("  ![](maGic.JPEG)  ", true, "maGic.JPEG")]
+        [TestCase("  ![](magic.jpg)  ", true, "magic.jpg")]
+        [TestCase("asdf ![](maGic.JPEG) asdf ", false, null)]
+        [TestCase("![desc](magic.jpg)", false, null)]
+        public void Test_Magic_Detection(string md, bool isMagic, string url)
         {
-            string md = "  ![](magic.jpg)  ";
-            Assert.True(Statix.Plugin.IMarkdownPlugin.IsMagicLine(md));
-            Assert.AreEqual("magic.jpg", Statix.Plugin.IMarkdownPlugin.MagicUrl(md));
-        }
+            Assert.AreEqual(isMagic, Statix.Plugin.IMarkdownPlugin.IsMagicLine(md));
 
-        [Test]
-        public void Test_Clickable_Images()
-        {
-            string[] linesIn = new string[] { "![](magic.jpg)" };
-            string[] linesOut = new Statix.Plugin.ClickableImages().Apply(linesIn);
-            Assert.That(linesOut[0].Contains("<a href='magic.jpg'"));
-            Assert.That(linesOut[0].Contains("<img src='magic.jpg'"));
+            if (isMagic)
+                Assert.AreEqual(url, Statix.Plugin.IMarkdownPlugin.MagicUrl(md));
         }
     }
 }

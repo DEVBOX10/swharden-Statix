@@ -42,8 +42,9 @@ namespace Statix
                 mdLines = mdLines[header.FirstContentLine..];
 
                 // apply markdown plugins
-                foreach (var p in markdownPlugins)
-                    mdLines = p.Apply(mdLines);
+                int[] linesWithoutCode = Plugin.IMarkdownPlugin.GetLinesWithoutCode(mdLines);
+                foreach (Plugin.IMarkdownPlugin p in markdownPlugins)
+                    mdLines = p.Apply(mdLines, linesWithoutCode);
 
                 // convert to HTML
                 string md = string.Join('\n', mdLines);
