@@ -33,4 +33,4 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az storage blob upload-batch --destination $web --source ./sample/content --connection-string "<BLOB_CONNECTION_STRING>"
+            az storage blob upload-batch --destination "$web" --source "./sample/content" --connection-string "<BLOB_CONNECTION_STRING>"
