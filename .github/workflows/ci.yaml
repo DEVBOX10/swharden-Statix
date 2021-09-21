@@ -66,3 +66,4 @@ jobs:
           server: swharden.com
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          log-level: minimal
