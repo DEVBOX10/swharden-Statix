@@ -10,33 +10,34 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./src
     steps:
       - name: 🛒 Checkout
         uses: actions/checkout@v2
-      - name: 🦄 Use .NET Core 3.1
+
+      - name: ✨ Set up .NET Core 3.1
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "3.1.x"
-      - name: ✨ NuGet Restore
-        run: dotnet restore
-        working-directory: ${{env.working-directory}}
+
+      - name: 🚚 NuGet Restore
+        run: dotnet restore ./src
+
       - name: 🛠️ Build Solution
-        run: dotnet build --configuration Release --no-restore
-        working-directory: ${{env.working-directory}}
+        run: dotnet build ./src --configuration Release --no-restore
+
       - name: 🧪 Run Tests
-        run: dotnet test --no-restore
-        working-directory: ${{env.working-directory}}
-      - name: 🌎 Build Website
+        run: dotnet test ./src --no-restore
+
+      - name: 🌎 Build for Azure Static Site
         run: |
           dotnet run \
             --project './src/Statix' \
             --content './sample/content' \
             --theme './sample/themes/statixdemo' \
             --urlSource 'https://github.com/swharden/Statix/blob/main/sample/content' \
-            --urlSite 'https://statix.swharden.com'
-      - name: 🚀 Deploy Website
+            --urlSite 'https://statix.z20.web.core.windows.net'
+
+      - name: 🚀 Deploy to Azure Blob Storage
         uses: azure/CLI@v1
         with:
           azcliversion: latest
@@ -46,3 +47,22 @@ jobs:
               --source './sample/content' \
               --connection-string '${{ secrets.BLOB_CONNECTION_STRING }}' \
               --output none
+
+      - name: 🌎 Build for Hosted Server
+        run: |
+          dotnet run \
+            --project './src/Statix' \
+            --content './sample/content' \
+            --theme './sample/themes/statixdemo' \
+            --urlSource 'https://github.com/swharden/Statix/blob/main/sample/content' \
+            --urlSite 'https://swharden.com/statix'
+
+      - name: 🚀 Deploy using FTP
+        uses: SamKirkland/FTP-Deploy-Action@65c6a8f943bbf04faf9b59520a103318b418952e # 4.1.0
+        with:
+          local-dir: sample/content
+          server-dir: /software/statix
+          protocol: ftps
+          server: swharden.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
