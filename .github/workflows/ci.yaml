@@ -56,7 +56,7 @@ jobs:
             --content './sample/content' \
             --theme './sample/themes/statixdemo' \
             --urlSource 'https://github.com/swharden/Statix/blob/main/sample/content' \
-            --urlSite 'https://swharden.com/statix'
+            --urlSite 'https://swharden.com/software/statix'
 
       - name: 🚀 Deploy using FTP
         uses: SamKirkland/FTP-Deploy-Action@65c6a8f943bbf04faf9b59520a103318b418952e # 4.1.0
