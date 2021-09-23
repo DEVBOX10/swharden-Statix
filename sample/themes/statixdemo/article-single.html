@@ -14,7 +14,12 @@
 
     <title>{{TITLE}}</title>
     <meta name="description" content="{{DESCRIPTION}}">
-    <base href="{{URL_BASE}}">
+
+    <!-- 
+        Some servers treat relative URLs differently based on whether folder URLs containing a trailing slash or not.
+        Defining the base URL explicitly like this removes platform inconsistency.
+    -->
+    <base href="{{URL_FOLDER}}">
 
     <style>
         a {
@@ -93,10 +98,10 @@
         <div class="container-fluid">
 
             <a href='/'>
-                <img src='{{URL_BASE}}/assets/statix-logo.svg' class='me-1' width="48" height="48" />
+                <img src='{{URL_HOME}}/assets/statix-logo.svg' class='me-1' width="48" height="48" />
             </a>
 
-            <a class="navbar-brand fs-3" href="{{URL_BASE}}">Statix</a>
+            <a class="navbar-brand fs-3" href="{{URL_HOME}}">Statix</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -112,11 +117,11 @@
                             Features
                         </a>
                         <ul class="dropdown-menu shadow-sm" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{URL_BASE}}/images">Embedded Images</a></li>
-                            <li><a class="dropdown-item" href="{{URL_BASE}}/videos">Embedded Videos</a></li>
-                            <li><a class="dropdown-item" href="{{URL_BASE}}/table">Tables</a></li>
-                            <li><a class="dropdown-item" href="{{URL_BASE}}/toc">Table of Contents</a></li>
-                            <li><a class="dropdown-item" href="{{URL_BASE}}/code">Syntax Highlighting</a></li>
+                            <li><a class="dropdown-item" href="{{URL_HOME}}/images">Embedded Images</a></li>
+                            <li><a class="dropdown-item" href="{{URL_HOME}}/videos">Embedded Videos</a></li>
+                            <li><a class="dropdown-item" href="{{URL_HOME}}/table">Tables</a></li>
+                            <li><a class="dropdown-item" href="{{URL_HOME}}/toc">Table of Contents</a></li>
+                            <li><a class="dropdown-item" href="{{URL_HOME}}/code">Syntax Highlighting</a></li>
                         </ul>
                     </li>
 
@@ -126,9 +131,9 @@
                             Sample Sites
                         </a>
                         <ul class="dropdown-menu shadow-sm" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{URL_BASE}}/advanced/pyABF">pyABF</a></li>
-                            <li><a class="dropdown-item" href="{{URL_BASE}}/advanced/ljpcalc">LJPcalc</a></li>
-                            <li><a class="dropdown-item" href="{{URL_BASE}}/advanced/csdv">Visualization</a></li>
+                            <li><a class="dropdown-item" href="{{URL_HOME}}/advanced/pyABF">pyABF</a></li>
+                            <li><a class="dropdown-item" href="{{URL_HOME}}/advanced/ljpcalc">LJPcalc</a></li>
+                            <li><a class="dropdown-item" href="{{URL_HOME}}/advanced/csdv">Visualization</a></li>
                         </ul>
                     </li>
 

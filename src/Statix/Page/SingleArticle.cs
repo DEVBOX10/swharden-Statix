@@ -23,11 +23,10 @@ namespace Statix.Page
             string html = TemplateHtml;
             html = html.Replace("{{TITLE}}", title);
             html = html.Replace("{{DESCRIPTION}}", description);
-            html = html.Replace("{{URL_BASE}}", siteUrlBase.TrimEnd('/') + "/");
+            html = html.Replace("{{URL_FOLDER}}", baseUrl.TrimEnd('/'));
+            html = html.Replace("{{URL_HOME}}", siteUrlBase.TrimEnd('/'));
+            html = html.Replace("{{URL_SOURCE}}", sourceUrl.TrimEnd('/'));
             html = html.Replace("{{CONTENT}}", content);
-            html = html.Replace("{{UTC_DATE}}", DateTime.UtcNow.ToShortDateString());
-            html = html.Replace("{{UTC_TIME}}", DateTime.UtcNow.ToShortTimeString());
-            html = html.Replace("{{URL_SOURCE}}", sourceUrl);
             return html;
         }
     }
