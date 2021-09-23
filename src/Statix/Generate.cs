@@ -65,7 +65,7 @@ namespace Statix
                 string relativePath = mdFilePath.Replace(contentDirectory.FullName, "");
                 string sourceUrl = sourceUrlBase.Trim('/') + "/" + relativePath.Trim('/');
                 string pageBaseUrl = siteUrlBase.Trim('/') + "/" + relativePath.Trim('/');
-                html = page.GetHtml(header.Title, header.Description, html, sourceUrl, pageBaseUrl);
+                html = page.GetHtml(header.Title, header.Description, html, sourceUrl, pageBaseUrl, siteUrlBase);
 
                 string outPath = Path.Combine(Path.GetDirectoryName(mdFilePath), FILENAME_INDEX_HTML);
                 File.WriteAllText(outPath, html);
