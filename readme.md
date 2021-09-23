@@ -10,16 +10,14 @@
 
 ## Features
 
-* ✔️ `![](image.jpg)` becomes a clickable image
-* ✔️ `![](YouTubeURL)` becomes an embedded video
-* ✔️ `![](TOC)` inserts a table of contents
-* ✔️ Anchors are added to headings automatically
-* ✔️ Github style tables are supported
-* ✔️ Automatic syntax highlighting ([highlight.js](https://highlightjs.org/))
-* ✔️ Pages link to their own source code on GitHub
-* ✔️ Automated deployment with GitHub Actions
-* ❌ Sitemap
-* ❌ RSS
+* `![](image.jpg)` becomes a clickable image
+* `![](YouTubeURL)` becomes an embedded video
+* `![](TOC)` inserts a table of contents
+* Anchors are added to headings automatically
+* Github style tables are supported
+* Syntax highlighting with [highlight.js](https://highlightjs.org/)
+* Pages link to their own source code on GitHub
+* Automated deployment with GitHub Actions
 
 ## Quickstart
 
