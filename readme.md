@@ -1,4 +1,4 @@
-# Statix
+# <img src="dev/icon/icon.png" height="24" width="24"> Statix
 
 [![](https://img.shields.io/github/workflow/status/swharden/Statix/CI)](https://github.com/swharden/Statix/actions/workflows/ci.yaml)
 
