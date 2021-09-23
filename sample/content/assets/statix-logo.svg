@@ -133,13 +133,13 @@
      inkscape:window-width="1920"
      borderlayer="true"
      units="px"
-     showgrid="false"
+     showgrid="true"
      inkscape:document-rotation="0"
      inkscape:current-layer="layer1"
      inkscape:document-units="mm"
-     inkscape:cy="22.080861"
-     inkscape:cx="9.8417634"
-     inkscape:zoom="5.6"
+     inkscape:cy="14.234546"
+     inkscape:cx="10.371848"
+     inkscape:zoom="11.2"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -166,15 +166,14 @@
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="Layer 1">
-    <path
-       mask="url(#mask1091)"
-       sodipodi:type="rect"
-       y="-0.28348213"
-       x="-0.63783485"
-       height="13.18192"
-       width="14.410342"
-       id="rect835"
-       style="opacity:1;fill:#672179;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round" />
+    <rect
+       style="opacity:1;fill:#672179;fill-opacity:1;stroke-width:0.964836;stroke-linecap:round;stroke-linejoin:round"
+       id="rect850"
+       width="12.7"
+       height="12.7"
+       x="0"
+       y="0"
+       ry="2.6458333" />
     <path
        style="fill:#8b48ac;fill-opacity:1;stroke:none;stroke-width:0.236545px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 5.7058463,1.6516757 H 9.0511104 L 7.4680835,4.8177287 H 10.156241 L 5.1084785,12.045886 6.3629514,6.5650316 H 4.5708463 Z"
