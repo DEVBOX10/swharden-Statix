@@ -7,21 +7,18 @@ namespace Statix.Page
 {
     public class PageUrls
     {
-        public readonly string Site;
-
-        public readonly string Page;
-
-        public readonly string PageSource;
-
-        public string SiteWithSlash => Site + "/";
-        public string PageWithSlash => Page + "/";
-        public string PageSourceWithSlash => PageSource + "/";
+        public readonly string SiteRootUrl;
+        public readonly string ThisFolderUrl;
+        public readonly string PageSourceUrl;
+        public readonly string RelativeUrl;
 
         public PageUrls(string mdFilePath, string contentRootPath, string siteRootUrl, string sourceRootUrl)
         {
-            Site = siteRootUrl.TrimEnd('/');
-            Page = (SiteWithSlash + GetRelativeUrl(contentRootPath, mdFilePath)).TrimEnd('/');
-            PageSource = (SiteWithSlash + sourceRootUrl).TrimEnd('/');
+            // TODO: use more descriptive types
+            RelativeUrl = GetRelativeUrl(contentRootPath, mdFilePath);
+            SiteRootUrl = siteRootUrl.TrimEnd('/');
+            PageSourceUrl = sourceRootUrl.TrimEnd('/') + "/" + RelativeUrl + "/" + Path.GetFileName(mdFilePath);
+            ThisFolderUrl = siteRootUrl.TrimEnd('/') + "/" + RelativeUrl;
         }
 
         private string GetRelativeUrl(string rootFolder, string mdFile)
@@ -31,7 +28,7 @@ namespace Statix.Page
             string mdFolder = Path.GetFullPath(Path.GetDirectoryName(mdFile));
             string relativeFolder = mdFolder.Replace(rootFolder, "");
             string relativeUrl = relativeFolder.Replace("\\", "/");
-            return relativeUrl;
+            return relativeUrl.Trim('/');
         }
     }
 }

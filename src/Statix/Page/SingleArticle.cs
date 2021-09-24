@@ -21,11 +21,11 @@ namespace Statix.Page
         public string GetHtml(Header header, string content, PageUrls urls)
         {
             string html = TemplateHtml;
-            html = html.Replace("{{TITLE}}", header.Title);
+            html = html.Replace("{{TITLE }}", header.Title);
             html = html.Replace("{{DESCRIPTION}}", header.Description);
-            html = html.Replace("{{BASE_HREF}}", urls.PageWithSlash);
-            html = html.Replace("{{URL_SITE}}", urls.Site);
-            html = html.Replace("{{HREF_SOURCE}}", urls.PageSourceWithSlash);
+            html = html.Replace("{{URL_SITE_ROOT}}", urls.SiteRootUrl);
+            html = html.Replace("{{URL_PAGE_BASE}}", urls.ThisFolderUrl + "/");
+            html = html.Replace("{{URL_PAGE_SOURCE}}", urls.PageSourceUrl);
             html = html.Replace("{{CONTENT}}", content);
             return html;
         }
