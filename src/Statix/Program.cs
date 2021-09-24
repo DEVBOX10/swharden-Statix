@@ -30,12 +30,12 @@ namespace Statix
             {
                 string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 string exeFolderPath = Path.GetDirectoryName(exePath);
-                CommandLineOptions opts = new CommandLineOptions()
+                CommandLineOptions opts = new()
                 {
                     Content = Path.GetFullPath(exeFolderPath + "/../../../../../sample/content"),
                     Theme = Path.GetFullPath(exeFolderPath + "/../../../../../sample/themes/statixdemo"),
                     SourceUrl = "https://github.com/swharden/Statix/tree/main/sample/content",
-                    SiteUrl = "http://localhost:8080",
+                    SiteUrl = "http://localhost:8080/sample-site",
                 };
                 RunOptions(opts);
                 return;
@@ -48,11 +48,13 @@ namespace Statix
 
         static void RunOptions(CommandLineOptions opts)
         {
-            Generate.SingleArticlePages(
-                contentDirectory: new DirectoryInfo(opts.Content),
-                themeDirectory: new DirectoryInfo(opts.Theme),
-                sourceUrlBase: opts.SourceUrl,
-                siteUrlBase: opts.SiteUrl);
+            var ssg = new Generator(
+                contentFolder: opts.Content,
+                themeFolder: opts.Theme,
+                sourceUrl: opts.SourceUrl,
+                rootUrl: opts.SiteUrl);
+
+            ssg.Generate();
         }
 
         static void HandleParseError(IEnumerable<Error> errs)

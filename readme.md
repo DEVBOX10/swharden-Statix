@@ -36,4 +36,4 @@ dotnet run --project ./src/Statix
   * `docker-compose up -d`
 * Build the Site
   * Run [build.bat](build.bat)
-  * Go to http://localhost:8080
+  * Go to http://localhost:8080/sample-site

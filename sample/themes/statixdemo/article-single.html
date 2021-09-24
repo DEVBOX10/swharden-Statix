@@ -14,13 +14,9 @@
 
     <title>{{TITLE}}</title>
     <meta name="description" content="{{DESCRIPTION}}">
-    <link rel="shortcut icon" href="{{URL_HOME}}/assets/statix-logo.svg" />
+    <link rel="shortcut icon" href="{{URL_SITE}}/assets/statix-logo.svg" />
 
-    <!-- 
-        Some servers treat relative URLs differently based on whether folder URLs containing a trailing slash or not.
-        Defining the base URL explicitly like this removes platform inconsistency.
-    -->
-    <base href="{{URL_FOLDER}}">
+    <base href="{{BASE_HREF}}">
 
     <style>
         a {
@@ -98,11 +94,11 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light mx-auto" style="max-width: 1000px;">
         <div class="container-fluid">
 
-            <a href='{{URL_HOME}}'>
-                <img src='{{URL_HOME}}/assets/statix-logo.svg' class='me-1' width="48" height="48" />
+            <a href='{{URL_SITE}}'>
+                <img src='{{URL_SITE}}/assets/statix-logo.svg' class='me-1' width="48" height="48" />
             </a>
 
-            <a class="navbar-brand fs-3" href="{{URL_HOME}}">Statix</a>
+            <a class="navbar-brand fs-3" href="{{URL_SITE}}">Statix</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -118,11 +114,11 @@
                             Features
                         </a>
                         <ul class="dropdown-menu shadow-sm" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{URL_HOME}}/images">Embedded Images</a></li>
-                            <li><a class="dropdown-item" href="{{URL_HOME}}/videos">Embedded Videos</a></li>
-                            <li><a class="dropdown-item" href="{{URL_HOME}}/table">Tables</a></li>
-                            <li><a class="dropdown-item" href="{{URL_HOME}}/toc">Table of Contents</a></li>
-                            <li><a class="dropdown-item" href="{{URL_HOME}}/code">Syntax Highlighting</a></li>
+                            <li><a class="dropdown-item" href="{{URL_SITE}}/images">Embedded Images</a></li>
+                            <li><a class="dropdown-item" href="{{URL_SITE}}/videos">Embedded Videos</a></li>
+                            <li><a class="dropdown-item" href="{{URL_SITE}}/table">Tables</a></li>
+                            <li><a class="dropdown-item" href="{{URL_SITE}}/toc">Table of Contents</a></li>
+                            <li><a class="dropdown-item" href="{{URL_SITE}}/code">Syntax Highlighting</a></li>
                         </ul>
                     </li>
 
@@ -132,9 +128,9 @@
                             Sample Sites
                         </a>
                         <ul class="dropdown-menu shadow-sm" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{URL_HOME}}/advanced/pyabf">pyABF</a></li>
-                            <li><a class="dropdown-item" href="{{URL_HOME}}/advanced/ljpcalc">LJPcalc</a></li>
-                            <li><a class="dropdown-item" href="{{URL_HOME}}/advanced/csdv">Visualization</a></li>
+                            <li><a class="dropdown-item" href="{{URL_SITE}}/advanced/pyabf">pyABF</a></li>
+                            <li><a class="dropdown-item" href="{{URL_SITE}}/advanced/ljpcalc">LJPcalc</a></li>
+                            <li><a class="dropdown-item" href="{{URL_SITE}}/advanced/csdv">Visualization</a></li>
                         </ul>
                     </li>
 
@@ -157,7 +153,7 @@
             <div class="text-center text-muted mt-5">
                 <a class="" href='https://github.com/swharden/Statix'>Statix</a>
                 generated this page from Markdown
-                <a class="" href='{{URL_SOURCE}}'>source</a>
+                <a class="" href='{{HREF_SOURCE}}'>source</a>
             </div>
         </footer>
 

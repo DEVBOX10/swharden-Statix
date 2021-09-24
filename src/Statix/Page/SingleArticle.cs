@@ -12,22 +12,28 @@ namespace Statix.Page
 
         public static readonly string FILENAME = "article-single.html";
 
-        public SingleArticle(DirectoryInfo themeDirectory)
+        public SingleArticle(string themeDirectory)
         {
-            string templateFile = Path.Combine(themeDirectory.FullName, FILENAME);
+            string templateFile = Path.Combine(themeDirectory, FILENAME);
             TemplateHtml = File.ReadAllText(templateFile);
         }
 
-        public string GetHtml(string title, string description, string content, string sourceUrl, string baseUrl, string siteUrlBase)
+        public string GetHtml(Header header, string content, PageUrls urls)
         {
             string html = TemplateHtml;
-            html = html.Replace("{{TITLE}}", title);
-            html = html.Replace("{{DESCRIPTION}}", description);
-            html = html.Replace("{{URL_FOLDER}}", baseUrl.TrimEnd('/'));
-            html = html.Replace("{{URL_HOME}}", siteUrlBase.TrimEnd('/'));
-            html = html.Replace("{{URL_SOURCE}}", sourceUrl.TrimEnd('/'));
+            html = html.Replace("{{TITLE}}", header.Title);
+            html = html.Replace("{{DESCRIPTION}}", header.Description);
+            html = html.Replace("{{BASE_HREF}}", urls.PageWithSlash);
+            html = html.Replace("{{URL_SITE}}", urls.Site);
+            html = html.Replace("{{HREF_SOURCE}}", urls.PageSourceWithSlash);
             html = html.Replace("{{CONTENT}}", content);
             return html;
+        }
+
+        public void SaveHtml(Header header, string content, PageUrls urls, string saveAs)
+        {
+            string html = GetHtml(header, content, urls);
+            File.WriteAllText(saveAs, html);
         }
     }
 }
