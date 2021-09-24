@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <LangVersion>Latest</LangVersion>
     <OutputType>Exe</OutputType>
     <Version>0.0.2</Version>
     <PackageId>Statix</PackageId>

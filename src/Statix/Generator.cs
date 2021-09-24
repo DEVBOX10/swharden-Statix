@@ -21,12 +21,12 @@ namespace Statix
         /// <summary>
         /// Plugins that run in order on the markdown before it is converted to HTML
         /// </summary>
-        public readonly List<Plugin.IMarkdownPlugin> MarkdownPlugins = new();
+        public readonly List<Plugin.IMarkdownPlugin> MarkdownPlugins = new List<Plugin.IMarkdownPlugin>();
 
         /// <summary>
         /// Plugins that run on the HTML after it is has been converged from markdown
         /// </summary>
-        public readonly List<Plugin.IHtmlPlugin> HtmlPlugins = new();
+        public readonly List<Plugin.IHtmlPlugin> HtmlPlugins = new List<Plugin.IHtmlPlugin>();
 
         /// <summary>
         /// Local folder containing markdown files that will become the root of the website.
@@ -103,7 +103,7 @@ namespace Statix
         {
             Stopwatch sw = Stopwatch.StartNew();
 
-            Page.SingleArticle page = new(ThemeFolder);
+            Page.SingleArticle page = new Page.SingleArticle(ThemeFolder);
 
             string[] mdFilePaths = FindIndexMarkdownFiles(new DirectoryInfo(ContentFolder));
 
@@ -115,7 +115,7 @@ namespace Statix
                 string[] mdLines = File.ReadAllLines(mdFilePath);
 
                 // parse the header and remove it from the markdown lines
-                Header header = new(mdLines);
+                Header header = new Header(mdLines);
                 mdLines = mdLines[header.FirstContentLine..];
 
                 // apply markdown plugins

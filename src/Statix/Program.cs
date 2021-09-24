@@ -30,7 +30,7 @@ namespace Statix
             {
                 string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 string exeFolderPath = Path.GetDirectoryName(exePath);
-                CommandLineOptions opts = new()
+                CommandLineOptions opts = new CommandLineOptions()
                 {
                     Content = Path.GetFullPath(exeFolderPath + "/../../../../../sample/content"),
                     Theme = Path.GetFullPath(exeFolderPath + "/../../../../../sample/themes/statixdemo"),
