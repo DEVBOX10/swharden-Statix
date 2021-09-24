@@ -19,35 +19,19 @@ namespace Statix.Page
 
         public PageUrls(string mdFilePath, string contentRootPath, string siteRootUrl, string sourceRootUrl)
         {
-            Site = RemoveTrailingSlashes(siteRootUrl);
-            Page = SiteWithSlash + RemoveEdgeSlashes(GetRelativeUrl(contentRootPath, mdFilePath));
-            PageSource = SiteWithSlash + RemoveTrailingSlashes(sourceRootUrl);
+            Site = siteRootUrl.TrimEnd('/');
+            Page = (SiteWithSlash + GetRelativeUrl(contentRootPath, mdFilePath)).TrimEnd('/');
+            PageSource = (SiteWithSlash + sourceRootUrl).TrimEnd('/');
         }
 
-        private string GetRelativeUrl(string rootFolder, string filePath)
+        private string GetRelativeUrl(string rootFolder, string mdFile)
         {
-            string folderPath = Path.GetFullPath(Path.GetDirectoryName(filePath));
-            string siteRootPath = Path.GetFullPath(rootFolder);
-            string relativeFolderPath = folderPath.Replace(siteRootPath, "");
-            return relativeFolderPath;
-        }
-
-        private string RemoveEdgeSlashes(string url) => RemoveLeadingSlashes(RemoveTrailingSlashes(url));
-
-        private string RemoveLeadingSlashes(string url)
-        {
-            url = url.Replace("\\", "/");
-            while (url.StartsWith("/"))
-                url = url.TrimStart('/');
-            return url;
-        }
-
-        private string RemoveTrailingSlashes(string url)
-        {
-            url = url.Replace("\\", "/");
-            while (url.EndsWith("/"))
-                url = url.TrimEnd('/');
-            return url;
+            // TODO: better cross-platform way to do this?
+            rootFolder = Path.GetFullPath(rootFolder).TrimEnd('/').TrimEnd('\\');
+            string mdFolder = Path.GetFullPath(Path.GetDirectoryName(mdFile));
+            string relativeFolder = mdFolder.Replace(rootFolder, "");
+            string relativeUrl = relativeFolder.Replace("\\", "/");
+            return relativeUrl;
         }
     }
 }
