@@ -1,9 +1,6 @@
-version: "2"
 services:
   statix:
-    build:
-      context: .
-      dockerfile: ./dockerfile
+    image: httpd:2
     ports:
       - "8080:80"
     volumes:
