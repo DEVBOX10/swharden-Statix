@@ -1,3 +1,9 @@
+---
+Title: Syntax Highlight
+Description: Code blocks automatically employ syntax highlighting
+Date: 2021-09-25 6:16PM EST
+---
+
 # Code Syntax Highlighting
 
 ## C#
