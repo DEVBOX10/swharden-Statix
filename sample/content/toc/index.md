@@ -1,3 +1,9 @@
+---
+Title: Table of Contents
+Description: How to insert a Table of Contents using Statix
+Date: 2021-09-25 6:13PM EST
+---
+
 # Table of Contents
 
 A Table of Contents can be easily added to the top of your article like this:
