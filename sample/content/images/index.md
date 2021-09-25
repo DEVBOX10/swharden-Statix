@@ -1,3 +1,9 @@
+---
+Title: Image Formatting
+Description: How to place images using Static
+Date: 2021-09-25 5:29PM EST
+---
+
 # Image Formatting
 
 Include images inside `div` blocks with certain classes to control how they display.
