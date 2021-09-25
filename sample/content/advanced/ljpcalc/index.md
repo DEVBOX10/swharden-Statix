@@ -1,6 +1,5 @@
 ---
-title: LJPcalc - Liquid Junction Potential Theory and Correction
-description: What causes LJPs and how to correct for them in patch-clamp experiments
+title: Science - Statix Sample Page
 ---
 
 # Liquid Junction Potential (LJP) Theory and Correction

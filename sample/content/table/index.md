@@ -1,4 +1,7 @@
 ---
+Title: Tables
+Description: Markdown tables are supported by Statix
+Date: 2021-09-25 6:32PM EST
 ---
 
 # Table

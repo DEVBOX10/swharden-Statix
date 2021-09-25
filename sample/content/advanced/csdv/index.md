@@ -1,6 +1,7 @@
 ---
-title: C# Demo
+title: Code - Statix Sample Page
 ---
+
 # Constellation Animation
 
 In this series we will create a graphics model to simulate stars bouncing around the image area and connect close stars with lines to generate a constellation-like animation. We will place the model in its own library, then investigate how different software architectures can help decouple the rendering sequence (the logic behind drawing stars and lines) from the GUI platform (Windows Forms vs. WPF) and also the graphics library (System.Drawing vs. SkiaSharp).

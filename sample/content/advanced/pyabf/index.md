@@ -1,6 +1,5 @@
 ---
-title: The ABF File Format
-description: Unofficial Guide to the ABF2 File Format
+title: Signal - Statix Sample Page
 ---
 
 # Unofficial Guide to the ABF File Format
