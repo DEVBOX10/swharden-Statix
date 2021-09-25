@@ -1,6 +1,6 @@
 ---
 Title: Image Formatting
-Description: How to place images using Static
+Description: How to place images using Statix
 Date: 2021-09-25 5:29PM EST
 ---
 
