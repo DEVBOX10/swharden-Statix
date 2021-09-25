@@ -16,6 +16,7 @@ namespace Statix
         public string[] Tags { get; private set; } = new string[0];
         public string Date { get; private set; }
         public int FirstContentLine { get; private set; }
+        public bool HasHeader => FirstContentLine > 0;
 
         public Header(string md)
         {

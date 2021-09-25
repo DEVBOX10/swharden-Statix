@@ -53,6 +53,11 @@ namespace Statix
         public readonly string SourceUrl;
 
         /// <summary>
+        /// Warn if the heading is missing or lacking important elements
+        /// </summary>
+        public bool ShowHeaderWarnings = true;
+
+        /// <summary>
         /// Create a new static website generator.
         /// Customize behvior using public properties, then Generate() your static site.
         /// </summary>
@@ -116,6 +121,8 @@ namespace Statix
 
                 // parse the header and remove it from the markdown lines
                 Header header = new Header(mdLines);
+                if (ShowHeaderWarnings)
+                    page.ValidateHeader(header);
                 mdLines = mdLines[header.FirstContentLine..];
 
                 // apply markdown plugins
@@ -138,6 +145,7 @@ namespace Statix
                 var urls = new Page.PageUrls(mdFilePath, ContentFolder, RootUrl, SourceUrl);
                 string htmlFilePath = Path.Combine(Path.GetDirectoryName(mdFilePath), IndexHtmlFilename);
                 page.SaveHtml(header, mdHtml, urls, htmlFilePath);
+                Console.WriteLine();
             }
 
             Console.WriteLine($"Generated {mdFilePaths.Length} pages in {sw.Elapsed.TotalMilliseconds:F3} milliseconds.");
