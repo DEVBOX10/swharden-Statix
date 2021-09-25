@@ -21,7 +21,7 @@ namespace Statix.Page
         public string GetHtml(Header header, string content, PageUrls urls)
         {
             string html = TemplateHtml;
-            html = html.Replace("{{TITLE }}", header.Title);
+            html = html.Replace("{{TITLE}}", header.Title);
             html = html.Replace("{{DESCRIPTION}}", header.Description);
             html = html.Replace("{{URL_SITE_ROOT}}", urls.SiteRootUrl);
             html = html.Replace("{{URL_PAGE_BASE}}", urls.ThisFolderUrl + "/");
