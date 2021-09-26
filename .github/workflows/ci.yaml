@@ -15,20 +15,20 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v2
 
-      - name: ✨ Set up .NET 5
+      - name: ✨ Setup .NET 5
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "5.0.x"
           include-prerelease: true
 
-      - name: 🚚 NuGet Restore
+      - name: 🚚 Restore Packages
         run: dotnet restore ./src
 
       - name: 🛠️ Build Solution
         run: dotnet build ./src
 
       - name: 🧪 Run Tests
-        run: dotnet test src/StatixTests
+        run: dotnet test ./src/StatixTests
 
       - name: 🌎 Build for Azure Static Site
         run: |
