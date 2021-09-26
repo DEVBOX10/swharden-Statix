@@ -3,10 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Exe</OutputType>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <PackageId>Statix</PackageId>
     <Description>Statix is a C# static site generator that creates HTML pages from Markdown files.</Description>
-    <PackageProjectUrl>https://github.com/swharden/Statix</PackageProjectUrl>
     <PackageTags>static site generator html markdown</PackageTags>
     <PackageProjectUrl>https://github.com/swharden/Statix</PackageProjectUrl>
     <RepositoryUrl>https://github.com/swharden/Statix</RepositoryUrl>
@@ -16,17 +15,12 @@
     <Authors>Scott W Harden</Authors>
     <Company>Harden Technologies, LLC</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-
     <DebugType>portable</DebugType>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-
     <Deterministic>true</Deterministic>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-
   </PropertyGroup>
 
   <ItemGroup>
