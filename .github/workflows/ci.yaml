@@ -25,10 +25,10 @@ jobs:
         run: dotnet restore ./src
 
       - name: 🛠️ Build Solution
-        run: dotnet build ./src --no-restore
+        run: dotnet build ./src
 
       - name: 🧪 Run Tests
-        run: dotnet test ./src --no-restore
+        run: dotnet test src/StatixTests
 
       - name: 🌎 Build for Azure Static Site
         run: |
