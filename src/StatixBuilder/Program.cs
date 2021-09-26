@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using CommandLine;
 
-namespace Statix
+namespace StatixBuilder
 {
     class Program
     {
@@ -48,7 +48,7 @@ namespace Statix
 
         static void RunOptions(CommandLineOptions opts)
         {
-            var ssg = new Generator(
+            var ssg = new Statix.Generator(
                 contentFolder: opts.Content,
                 themeFolder: opts.Theme,
                 sourceUrl: opts.SourceUrl,
