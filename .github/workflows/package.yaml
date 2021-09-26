@@ -13,10 +13,11 @@ jobs:
       - name: 🛒 Checkout
         uses: actions/checkout@v2
 
-      - name: ✨ Set up .NET Core 3.1
+      - name: ✨ Set up .NET 6
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: "3.1.x"
+          dotnet-version: "6.0.x"
+          include-prerelease: true
 
       - name: 🚚 NuGet Restore
         run: dotnet restore ./src
