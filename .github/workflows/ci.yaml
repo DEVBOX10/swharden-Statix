@@ -28,7 +28,7 @@ jobs:
         run: dotnet build ./src --configuration Release --no-restore
 
       - name: 🧪 Run Tests
-        run: dotnet test ./src --no-restore
+        run: dotnet test ./src --configuration Release --no-restore
 
       - name: 🌎 Build for Azure Static Site
         run: |
