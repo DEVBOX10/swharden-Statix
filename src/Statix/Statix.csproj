@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Exe</OutputType>
-    <Version>0.0.4</Version>
+    <Version>0.0.5</Version>
     <PackageId>Statix</PackageId>
     <Description>Statix is a C# static site generator that creates HTML pages from Markdown files.</Description>
     <PackageTags>static site generator html markdown</PackageTags>
