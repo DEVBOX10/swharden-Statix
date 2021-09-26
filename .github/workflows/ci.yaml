@@ -33,7 +33,7 @@ jobs:
       - name: 🌎 Build for Azure Static Site
         run: |
           dotnet run \
-            --project './src/Statix' \
+            --project './src/StatixBuilder' \
             --content './sample/content' \
             --theme './sample/themes/statixdemo' \
             --urlSource 'https://github.com/swharden/Statix/blob/main/sample/content' \
@@ -53,7 +53,7 @@ jobs:
       - name: 🌎 Build for Hosted Server
         run: |
           dotnet run \
-            --project './src/Statix' \
+            --project './src/StatixBuilder' \
             --content './sample/content' \
             --theme './sample/themes/statixdemo' \
             --urlSource 'https://github.com/swharden/Statix/blob/main/sample/content' \
