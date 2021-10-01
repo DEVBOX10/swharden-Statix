@@ -13,7 +13,7 @@ namespace Statix.Plugin
             for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i].Trim();
-                if (line.StartsWith("<h") && line.EndsWith(">"))
+                if (line.StartsWith("<h") && line.EndsWith(">") && !line.StartsWith("<hr"))
                 {
                     Heading heading = Heading.FromHtml(line);
                     lines[i] =
