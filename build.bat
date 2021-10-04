@@ -1,6 +1,6 @@
 :: rebuild the sample website
 dotnet run ^
- --project src/Statix/Statix.csproj ^
+ --project src/StatixBuilder/StatixBuilder.csproj ^
  --content sample/content ^
  --theme sample/themes/statixdemo ^
  --urlSource https://github.com/swharden/Statix/blob/main/sample/content ^

@@ -18,30 +18,6 @@ namespace Statix.Page
             TemplateHtml = File.ReadAllText(templateFile);
         }
 
-        public void ValidateHeader(Header header)
-        {
-            if (!header.HasHeader)
-            {
-                Console.WriteLine("WARNING: file does not have a header");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(header.Title))
-            {
-                Console.WriteLine("WARNING: header is missing title");
-            }
-
-            if (string.IsNullOrWhiteSpace(header.Description))
-            {
-                Console.WriteLine("WARNING: header is missing a description");
-            }
-
-            if (string.IsNullOrWhiteSpace(header.Date))
-            {
-                Console.WriteLine("WARNING: header is missing date");
-            }
-        }
-
         public string GetHtml(Header header, string content, PageUrls urls)
         {
             string html = TemplateHtml;

@@ -55,7 +55,7 @@ namespace Statix
         /// <summary>
         /// Warn if the heading is missing or lacking important elements
         /// </summary>
-        public bool ShowHeaderWarnings = true;
+        public readonly HeaderRequirements HeaderRequirements = new HeaderRequirements();
 
         /// <summary>
         /// Create a new static website generator.
@@ -121,8 +121,9 @@ namespace Statix
 
                 // parse the header and remove it from the markdown lines
                 Header header = new Header(mdLines);
-                if (ShowHeaderWarnings)
-                    page.ValidateHeader(header);
+                string[] missingHeaderParts = HeaderRequirements.GetMissing(header);
+                if (missingHeaderParts.Length > 0)
+                    Console.WriteLine("MISSING: " + string.Join(", ", missingHeaderParts));
                 mdLines = mdLines[header.FirstContentLine..];
 
                 // apply markdown plugins
