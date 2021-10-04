@@ -25,7 +25,7 @@ namespace Statix.Page
             html = html.Replace("{{DESCRIPTION}}", header.Description);
             html = html.Replace("{{URL_SITE_ROOT}}", urls.SiteRootUrl);
             html = html.Replace("{{URL_PAGE_BASE}}", urls.ThisFolderUrl + "/");
-            html = html.Replace("{{URL_PAGE_SOURCE}}", urls.PageSourceUrl);
+            html = html.Replace("{{URL_PAGE_SOURCE}}", header.CustomSourceURL ?? urls.PageSourceUrl);
             html = html.Replace("{{CONTENT}}", content);
             return html;
         }

@@ -15,6 +15,7 @@ namespace Statix
         public string Description { get; private set; }
         public string[] Tags { get; private set; } = new string[0];
         public string Date { get; private set; }
+        public string CustomSourceURL { get; private set; }
         public int FirstContentLine { get; private set; }
         public bool HasHeader => FirstContentLine > 0;
 
@@ -70,6 +71,8 @@ namespace Statix
                 Tags = value.Split(",").Select(x => x.Trim()).ToArray();
             else if (key == "date")
                 Date = value;
+            else if (key == "source")
+                CustomSourceURL = value;
         }
     }
 }
