@@ -14,6 +14,7 @@ Hi this is _markdown_ and it **works**!
   * [images](images)
   * [table of contents](toc)
   * [videos](videos)
+  * [custom source URL](custom-source-url)
 * Demo Sites
   * [C# Data Visualization](advanced/csdv)
   * [LJPcalc](advanced/ljpcalc)
