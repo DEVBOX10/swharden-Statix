@@ -28,6 +28,9 @@ jobs:
         run: dotnet build ./src
 
       - name: 🧪 Run Tests
+        env:
+          SANDBOX_FTP_USERNAME: ${{ secrets.SANDBOX_FTP_USERNAME }}
+          SANDBOX_FTP_PASSWORD: ${{ secrets.SANDBOX_FTP_PASSWORD }}
         run: dotnet test ./src/StatixTests
 
       - name: 🌎 Build for Azure Static Site
