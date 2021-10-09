@@ -21,7 +21,7 @@ namespace StatixTests.Ftp
         }
 
         [Test]
-        public void Test_Login_Success()
+        public void Test_Connection_Success()
         {
             string username = Environment.GetEnvironmentVariable("SANDBOX_FTP_USERNAME");
             string password = Environment.GetEnvironmentVariable("SANDBOX_FTP_PASSWORD");
@@ -32,7 +32,7 @@ namespace StatixTests.Ftp
             if (password is null)
                 throw new InvalidOperationException("environment variables do not contain password");
 
-            Console.WriteLine("obtained user/pass from environment varaiables");
+            var f = new Statix.Deploy.FtpConnection("swharden.com", username, password);
         }
     }
 }
