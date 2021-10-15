@@ -4,27 +4,25 @@ using System;
 
 namespace StatixTests.Ftp
 {
+    [TestFixture]
+    [Ignore("Skip tests requiring FTP connection")]
     internal class Login
     {
         [OneTimeSetUp]
-        public void LoadEnvVars()
+        public static void LoadEnvVars()
         {
             var config = new ConfigurationBuilder().AddUserSecrets<Login>().Build();
-            int loaded = 0;
             foreach (var child in config.GetChildren())
             {
                 Environment.SetEnvironmentVariable(child.Key, child.Value);
-                Console.WriteLine($"Loaded environment varaible: {child.Key}");
-                loaded += 1;
             }
-            Console.WriteLine($"Loaded {loaded} user secrets into environment variables.");
         }
 
         [Test]
-        public void Test_Connection_Success()
+        public static void Test_Connection_Success()
         {
-            string username = Environment.GetEnvironmentVariable("SANDBOX_FTP_USERNAME");
-            string password = Environment.GetEnvironmentVariable("SANDBOX_FTP_PASSWORD");
+            string username = Environment.GetEnvironmentVariable("SANDBOX_FTP_USERNAME") ?? throw new NullReferenceException();
+            string password = Environment.GetEnvironmentVariable("SANDBOX_FTP_PASSWORD") ?? throw new NullReferenceException();
 
             if (username is null)
                 throw new InvalidOperationException("environment variables do not contain username");
@@ -33,6 +31,7 @@ namespace StatixTests.Ftp
                 throw new InvalidOperationException("environment variables do not contain password");
 
             var f = new Statix.Deploy.FtpConnection("swharden.com", username, password);
+            Console.WriteLine(f);
         }
     }
 }
