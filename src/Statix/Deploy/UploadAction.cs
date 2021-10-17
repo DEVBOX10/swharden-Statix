@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Statix.Deploy
+﻿namespace Statix.Deploy
 {
     public class UploadAction
     {
-        public readonly string LocalPath;
-        public readonly string RemotePath;
-        public readonly SyncAction Action;
+        public readonly SyncFile LocalFile;
+        public readonly SyncAction SyncAction;
 
         public UploadAction(SyncFile localFile, SyncAction action)
         {
-            LocalPath = localFile.LocalPath;
-            RemotePath = localFile.RemotePath;
-            Action = action;
+            LocalFile = localFile;
+            SyncAction = action;
         }
 
         public override string ToString()
         {
-            return $"{Action} {LocalPath} {RemotePath}";
+            return $"{SyncAction} {LocalFile.LocalPath} {LocalFile.RemotePath}";
         }
     }
 }

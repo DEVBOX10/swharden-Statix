@@ -17,8 +17,6 @@ namespace Statix.Deploy
 
         public static string ToJson(SyncFile[] files, bool indented = true)
         {
-            static string Iso8601(DateTime dt) => dt.ToString("o", CultureInfo.InvariantCulture);
-
             using var stream = new MemoryStream();
             var options = new JsonWriterOptions() { Indented = indented };
             using var writer = new Utf8JsonWriter(stream, options);
@@ -26,14 +24,14 @@ namespace Statix.Deploy
             writer.WriteStartObject();
             writer.WriteString("statixVersion", SyncFile.StatixVersion);
             writer.WriteString("syncVersion", SyncFile.SyncVersion);
-            writer.WriteString("syncDate", Iso8601(DateTime.Now));
+            writer.WriteString("syncDate", SyncFile.ToIso8601(DateTime.Now));
             writer.WriteStartArray("files");
             foreach (SyncFile file in files)
             {
                 writer.WriteStartObject();
                 writer.WriteString("path", file.RemotePath);
                 writer.WriteString("hash", file.Hash);
-                writer.WriteString("date", Iso8601(file.Uploaded));
+                writer.WriteString("date", SyncFile.ToIso8601(file.Uploaded));
                 writer.WriteNumber("size", file.Size);
                 writer.WriteEndObject();
             }

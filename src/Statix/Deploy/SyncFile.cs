@@ -51,6 +51,8 @@ namespace Statix.Deploy
             Uploaded = DateTime.Parse(date);
         }
 
+        public static string ToIso8601(DateTime dt) => dt.ToString("o", System.Globalization.CultureInfo.InvariantCulture);
+
         public static SyncFile FromRemoteFile(string remotePath, string hash, int size, string date)
         {
             return new SyncFile(remotePath, hash, size, date);
@@ -79,8 +81,12 @@ namespace Statix.Deploy
 
         public override string ToString()
         {
+            string age = UploadAge.ToString().Split(".")[0] + " ago";
+            if (UploadAge.Seconds < 1)
+                age = "just now";
+
             return HasBeenUploaded
-                ? $"{RemotePath} ({Size / 1e3:N} kB) uploaded {UploadAge} ag"
+                ? $"{RemotePath} ({Size / 1e3:N} kB) uploaded {age}"
                 : $"{RemotePath} ({Size / 1e3:N} kB) NOT UPLOADED";
         }
 
