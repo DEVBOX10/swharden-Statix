@@ -13,23 +13,9 @@ namespace StatixTests.Ftp
         public static string SAMPLE_IMAGE_HASH = "43becb771f2eebcb72196bca905ad3ba";
 
         [Test]
-        public void Test_SyncState_ToJson()
-        {
-            var sync = new Statix.Deploy.SyncManager();
-
-            string json = sync.ToJson();
-            Console.WriteLine(json);
-
-            Assert.IsNotNull(json);
-            Assert.IsNotEmpty(json);
-        }
-
-        [Test]
         public void Test_SyncState_Add()
         {
-            var sync = new Statix.Deploy.SyncManager();
-            sync.AddFile(SAMPLE_IMAGE_PATH, "/sample/remote/path.jpg");
-
+            var sync = Statix.Deploy.SyncFile.FromLocalFile(SAMPLE_IMAGE_PATH, "/sample/remote/path.jpg");
             string json = sync.ToJson();
             Console.WriteLine(json);
 
@@ -40,12 +26,11 @@ namespace StatixTests.Ftp
         [Test]
         public void Test_SyncState_AddFile()
         {
-            var sync = new Statix.Deploy.SyncManager();
-            var sampleFile = sync.AddFile(SAMPLE_IMAGE_PATH, "/some/remote/path.jpg");
+            var sampleFile = Statix.Deploy.SyncFile.FromLocalFile(SAMPLE_IMAGE_PATH, "/sample/remote/path.jpg");
             Assert.AreEqual(SAMPLE_IMAGE_SIZE, sampleFile.Size);
             Assert.AreEqual(SAMPLE_IMAGE_HASH, sampleFile.Hash);
 
-            string json = sync.ToJson();
+            string json = sampleFile.ToJson();
             Console.WriteLine(json);
 
             Assert.IsNotNull(json);
@@ -55,10 +40,8 @@ namespace StatixTests.Ftp
         [Test]
         public void Test_SyncState_AddFolder()
         {
-            var sync = new Statix.Deploy.SyncManager();
-            sync.AddFolder(SAMPLE_FOLDER_PATH, "/remote/folder/");
-
-            string json = sync.ToJson();
+            Statix.Deploy.SyncFile[] files = Statix.Deploy.SyncFile.FromLocalFolder(SAMPLE_FOLDER_PATH, "/remote/folder/");
+            string json = Statix.Deploy.SyncJson.ToJson(files);
             Console.WriteLine(json);
 
             Assert.IsNotNull(json);
@@ -68,20 +51,21 @@ namespace StatixTests.Ftp
         [Test]
         public void Test_SyncState_Load()
         {
-            var sync1 = new Statix.Deploy.SyncManager();
-            sync1.AddFolder(SAMPLE_FOLDER_PATH, "/remote/folder/");
+            Statix.Deploy.SyncFile[] sync1Files = Statix.Deploy.SyncFile.FromLocalFolder(SAMPLE_FOLDER_PATH, "/remote/folder/");
+            string sync1Json = Statix.Deploy.SyncJson.ToJson(sync1Files);
 
             string localJsonFilePath = Path.GetFullPath("Test_SyncState_Load.json");
-            File.WriteAllText(localJsonFilePath, sync1.ToJson());
+            File.WriteAllText(localJsonFilePath, sync1Json);
             Console.WriteLine(localJsonFilePath);
 
             string json = File.ReadAllText(localJsonFilePath);
-            Statix.Deploy.SyncFile[] files = Statix.Deploy.SyncFile.FromJson(json);
-            foreach (var file in files)
+            Statix.Deploy.SyncFile[] sync2Files = Statix.Deploy.SyncJson.FromJson(json);
+            foreach (var file in sync2Files)
                 Console.WriteLine(file);
 
-            Assert.IsNotNull(files);
-            Assert.IsNotEmpty(files);
-            Assert.AreEqual(sync1.FileCount, files.Length);        }
+            Assert.IsNotNull(sync2Files);
+            Assert.IsNotEmpty(sync2Files);
+            Assert.AreEqual(sync1Files.Length, sync2Files.Length);
+        }
     }
 }
