@@ -9,6 +9,8 @@ using Statix.Deploy;
 
 namespace StatixTests.DeployTests
 {
+    [TestFixture]
+    [Ignore("Ignore live FTP connection tests")]
     internal class FtpUploaderTests
     {
         private static (string user, string pass) GetLoginCreds()
