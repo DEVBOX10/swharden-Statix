@@ -119,10 +119,11 @@ namespace Statix.Sitemap
                     elUrl.Add(new XElement("priority", url.Priority));
             }
 
-            StringWriter writer = new StringWriter();
-            doc.Save(writer);
-            string xml = writer.ToString();
+            var ms = new MemoryStream();
+            doc.Save(ms, SaveOptions.OmitDuplicateNamespaces);
+            ms.Flush();
 
+            string xml = Encoding.UTF8.GetString(ms.ToArray());
             xml = xml.Replace(" xmlns=\"\"", "");
             return xml;
         }
