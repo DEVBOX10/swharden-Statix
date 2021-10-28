@@ -93,7 +93,7 @@ namespace Statix.Sitemap
         {
             // format definition: https://www.sitemaps.org/protocol.html
 
-            XDeclaration declaration = new XDeclaration(version: "1.0", encoding: "utf-16", standalone: "yes");
+            XDeclaration declaration = new XDeclaration(version: "1.0", encoding: "UTF-8", standalone: "yes");
             XDocument doc = new XDocument(declaration);
 
             XNamespace xn = "http://www.sitemaps.org/schemas/sitemap/0.9";
