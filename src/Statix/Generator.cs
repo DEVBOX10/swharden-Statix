@@ -146,7 +146,6 @@ namespace Statix
                 var urls = new Page.PageUrls(mdFilePath, ContentFolder, RootUrl, SourceUrl);
                 string htmlFilePath = Path.Combine(Path.GetDirectoryName(mdFilePath), IndexHtmlFilename);
                 singleArticleTemplate.SaveHtml(header, mdHtml, urls, htmlFilePath);
-                Console.WriteLine();
             }
 
             BuildSitemap();
@@ -178,6 +177,14 @@ namespace Statix
                 mdFilePaths.AddRange(FindIndexMarkdownFiles(dir));
 
             return mdFilePaths.ToArray();
+        }
+
+        public void DisableHeaderWarnings()
+        {
+            HeaderRequirements.RequireHeader = false;
+            HeaderRequirements.RequireTitle = false;
+            HeaderRequirements.RequireDescription = false;
+            HeaderRequirements.RequireDate = false;
         }
     }
 }

@@ -14,6 +14,8 @@ namespace StatixTests
                 sourceUrl: "https://github.com/swharden/Statix/tree/main/sample/content",
                 rootUrl: "http://localhost:8080/sample-site");
 
+            ssg.DisableHeaderWarnings();
+
             ssg.Generate();
         }
     }
