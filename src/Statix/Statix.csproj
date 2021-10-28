@@ -16,11 +16,11 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <DebugType>portable</DebugType>
     <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>    <!-- https://github.com/NuGet/Home/issues/10791 -->
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <Deterministic>true</Deterministic>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <!-- <PackageReadmeFile>readme.md</PackageReadmeFile> -->    <!-- https://github.com/NuGet/Home/issues/10791 -->
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
