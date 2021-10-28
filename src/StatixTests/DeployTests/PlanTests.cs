@@ -22,7 +22,7 @@ namespace StatixTests.DeployTests
         public void Test_Plan_AddFolder()
         {
             Plan plan = new();
-            plan.AddFolder(SampleFile.FOLDER_PATH, "/sample/folder/");
+            plan.AddFolder(SampleFile.SAMPLE_CONTENT_FOLDER, "/sample/folder/");
             Assert.Greater(plan.FileCount, 1);
         }
 
@@ -30,7 +30,7 @@ namespace StatixTests.DeployTests
         public void Test_Plan_ToJson()
         {
             Plan plan = new();
-            plan.AddFolder(SampleFile.FOLDER_PATH, "/sample/folder/");
+            plan.AddFolder(SampleFile.SAMPLE_CONTENT_FOLDER, "/sample/folder/");
 
             var uploader = new MockUploader();
             uploader.RemoteDeploy(plan);
@@ -47,12 +47,12 @@ namespace StatixTests.DeployTests
             var uploader = new MockUploader();
 
             Plan plan1 = new();
-            plan1.AddFolder(SampleFile.FOLDER_PATH, "/sample/folder/");
+            plan1.AddFolder(SampleFile.SAMPLE_CONTENT_FOLDER, "/sample/folder/");
             uploader.RemoteDeploy(plan1);
             string json = plan1.ToJson();
 
             Plan plan2 = new(json);
-            plan2.AddFolder(SampleFile.FOLDER_PATH, "/sample/folder/");
+            plan2.AddFolder(SampleFile.SAMPLE_CONTENT_FOLDER, "/sample/folder/");
             uploader.RemoteDeploy(plan2);
         }
     }

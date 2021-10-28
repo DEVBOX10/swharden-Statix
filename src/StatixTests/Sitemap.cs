@@ -51,7 +51,7 @@ namespace StatixTests
         public void Test_Scan_Filesystem()
         {
             var sm = new Statix.Sitemap.SitemapBuilder();
-            sm.AddScan(SampleFile.FOLDER_PATH, "https://swharden.com/sample/content/");
+            sm.AddScan(SampleFile.SAMPLE_CONTENT_FOLDER, "https://swharden.com/sample/content/");
             Console.WriteLine(sm.GetText());
         }
     }

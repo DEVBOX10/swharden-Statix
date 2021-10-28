@@ -30,7 +30,8 @@ namespace StatixTests
             }
         }
 
-        public static string FOLDER_PATH => Path.Combine(REPO_ROOT, "sample/content/");
+        public static string SAMPLE_CONTENT_FOLDER => Path.Combine(REPO_ROOT, "sample/content/");
+        public static string SAMPLE_THEME_FOLDER => Path.Combine(REPO_ROOT, "sample/themes/statixdemo");
 
         public static string IMAGE_PATH = Path.Combine(REPO_ROOT, "sample/content/images/small.jpg");
         public static string IMAGE_HASH = "43becb771f2eebcb72196bca905ad3ba";

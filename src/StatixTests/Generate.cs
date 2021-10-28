@@ -9,8 +9,8 @@ namespace StatixTests
         public void Test_Build_SampleSite()
         {
             var ssg = new Statix.Generator(
-                contentFolder: Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/content"),
-                themeFolder: Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../sample/themes/statixdemo"),
+                contentFolder: SampleFile.SAMPLE_CONTENT_FOLDER,
+                themeFolder: SampleFile.SAMPLE_THEME_FOLDER,
                 sourceUrl: "https://github.com/swharden/Statix/tree/main/sample/content",
                 rootUrl: "http://localhost:8080/sample-site");
 
