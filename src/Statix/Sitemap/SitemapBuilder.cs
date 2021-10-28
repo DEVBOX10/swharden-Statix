@@ -26,7 +26,7 @@ namespace Statix.Sitemap
             if (!urlRoot.EndsWith("/"))
                 urlRoot += "/";
 
-            localRoot = Path.GetFullPath(localRoot.Trim('/'));
+            localRoot = Path.GetFullPath(localRoot.TrimEnd('/'));
             string[] mdIndexes = Directory.GetFiles(localRoot, "index.md", SearchOption.AllDirectories);
             string[] htmlIndexes = Directory.GetFiles(localRoot, "index.html", SearchOption.AllDirectories);
             string[] indexFolders = mdIndexes.Concat(htmlIndexes).Select(x => Path.GetDirectoryName(x)).ToArray();
