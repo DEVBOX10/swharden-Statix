@@ -27,8 +27,7 @@ dotnet run --project ./src/Statix
 
 ## Build and Deploy with GitHub Actions
 * **Usage:** Refer to [`ci.yaml`](ci.yaml)
-* **Example:** Azure Blob Storage: https://statix.z20.web.core.windows.net
-* **Example:** Traditional web server: https://swharden.com/software/statix
+* **Example:** [`sample/content/`](sample/content) is deployed to https://swharden.com/software/statix
 
 ## Build and Serve Locally
 * Set Up Docker

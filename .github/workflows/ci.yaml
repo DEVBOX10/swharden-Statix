@@ -33,27 +33,7 @@ jobs:
           SANDBOX_FTP_PASSWORD: ${{ secrets.SANDBOX_FTP_PASSWORD }}
         run: dotnet test ./src/StatixTests
 
-      - name: 🌎 Build for Azure Static Site
-        run: |
-          dotnet run \
-            --project './src/StatixBuilder' \
-            --content './sample/content' \
-            --theme './sample/themes/statixdemo' \
-            --urlSource 'https://github.com/swharden/Statix/blob/main/sample/content' \
-            --urlSite 'https://statix.z20.web.core.windows.net'
-
-      - name: 🚀 Deploy to Azure Blob Storage
-        uses: azure/CLI@v1
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az storage blob upload-batch \
-              --destination '$web' \
-              --source './sample/content' \
-              --connection-string '${{ secrets.BLOB_CONNECTION_STRING }}' \
-              --output none
-
-      - name: 🌎 Build for Hosted Server
+      - name: 🌎 Build Website
         run: |
           dotnet run \
             --project './src/StatixBuilder' \
@@ -62,7 +42,7 @@ jobs:
             --urlSource 'https://github.com/swharden/Statix/blob/main/sample/content' \
             --urlSite 'https://swharden.com/software/statix'
 
-      - name: 🚀 Deploy using FTP
+      - name: 🚀 Deploy Website
         uses: SamKirkland/FTP-Deploy-Action@65c6a8f943bbf04faf9b59520a103318b418952e # 4.1.0
         with:
           local-dir: sample/content/
