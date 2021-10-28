@@ -17,6 +17,7 @@ namespace StatixTests
             ssg.DisableHeaderWarnings();
 
             ssg.Generate();
+            ssg.GenerateSitemap();
         }
     }
 }
