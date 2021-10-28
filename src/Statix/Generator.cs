@@ -108,7 +108,7 @@ namespace Statix
         {
             Stopwatch sw = Stopwatch.StartNew();
 
-            Page.SingleArticle page = new Page.SingleArticle(ThemeFolder);
+            Page.SingleArticle singleArticleTemplate = new Page.SingleArticle(ThemeFolder);
 
             string[] mdFilePaths = FindIndexMarkdownFiles(new DirectoryInfo(ContentFolder));
 
@@ -145,11 +145,21 @@ namespace Statix
                 // wrap the content in the page template
                 var urls = new Page.PageUrls(mdFilePath, ContentFolder, RootUrl, SourceUrl);
                 string htmlFilePath = Path.Combine(Path.GetDirectoryName(mdFilePath), IndexHtmlFilename);
-                page.SaveHtml(header, mdHtml, urls, htmlFilePath);
+                singleArticleTemplate.SaveHtml(header, mdHtml, urls, htmlFilePath);
                 Console.WriteLine();
             }
 
+            BuildSitemap();
             Console.WriteLine($"Generated {mdFilePaths.Length} pages in {sw.Elapsed.TotalMilliseconds:F3} milliseconds.");
+        }
+
+        public void BuildSitemap()
+        {
+            var sm = new Sitemap.SitemapBuilder();
+            sm.AddScan(ContentFolder, RootUrl);
+            string sitemapFilePath = Path.Combine(ContentFolder, "sitemap.xml");
+            File.WriteAllText(sitemapFilePath, sm.GetXML());
+            Console.WriteLine($"Generated sitemap with {sm.Count} URLs: {sitemapFilePath}");
         }
 
         /// <summary>
