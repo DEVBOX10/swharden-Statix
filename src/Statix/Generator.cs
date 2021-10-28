@@ -58,6 +58,18 @@ namespace Statix
         public readonly HeaderRequirements HeaderRequirements = new HeaderRequirements();
 
         /// <summary>
+        /// Statix package version
+        /// </summary>
+        public static string Version
+        {
+            get
+            {
+                Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                return $"{version.Major}.{version.Minor}.{version.Build}";
+            }
+        }
+
+        /// <summary>
         /// Create a new static website generator.
         /// Customize behvior using public properties, then Generate() your static site.
         /// </summary>
