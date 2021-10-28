@@ -100,6 +100,8 @@ namespace Statix.Sitemap
             XElement root = new XElement(xn + "urlset");
             doc.Add(root);
 
+            doc.Add(new XComment($"Statix {Generator.Version} {DateTime.UtcNow} UTC"));
+
             foreach (Url url in URLs)
             {
                 XElement elUrl = new XElement("url");
