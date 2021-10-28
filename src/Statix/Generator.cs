@@ -148,11 +148,10 @@ namespace Statix
                 singleArticleTemplate.SaveHtml(header, mdHtml, urls, htmlFilePath);
             }
 
-            BuildSitemap();
             Console.WriteLine($"Generated {mdFilePaths.Length} pages in {sw.Elapsed.TotalMilliseconds:F3} milliseconds.");
         }
 
-        public void BuildSitemap()
+        public void GenerateSitemap()
         {
             var sm = new Sitemap.SitemapBuilder();
             sm.AddScan(ContentFolder, RootUrl);
