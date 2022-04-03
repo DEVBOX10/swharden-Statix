@@ -3,10 +3,6 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-  schedule:
-    - cron: "5 0 * * *"
 
 jobs:
   build:
@@ -28,27 +24,4 @@ jobs:
         run: dotnet build ./src
 
       - name: 🧪 Run Tests
-        env:
-          SANDBOX_FTP_USERNAME: ${{ secrets.SANDBOX_FTP_USERNAME }}
-          SANDBOX_FTP_PASSWORD: ${{ secrets.SANDBOX_FTP_PASSWORD }}
         run: dotnet test ./src/StatixTests
-
-      - name: 🌎 Build Website
-        run: |
-          dotnet run \
-            --project './src/StatixBuilder' \
-            --content './sample/content' \
-            --theme './sample/themes/statixdemo' \
-            --urlSource 'https://github.com/swharden/Statix/blob/main/sample/content' \
-            --urlSite 'https://swharden.com/software/statix'
-
-      - name: 🚀 Deploy Website
-        uses: SamKirkland/FTP-Deploy-Action@65c6a8f943bbf04faf9b59520a103318b418952e # 4.1.0
-        with:
-          local-dir: sample/content/
-          server-dir: /software/statix/
-          protocol: ftps
-          server: swharden.com
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          log-level: minimal
