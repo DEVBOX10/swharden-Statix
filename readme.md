@@ -6,7 +6,9 @@
 
 **How it works:** Statix crawls a directory tree and whenever it finds `index.md` it generates `index.html` according to HTML templates in the themes folder. The resulting site uses folder names as URLs.
 
-> **WARNING:** Statix is pre-alpha and not recommended for production use
+> ⚠️ **WARNING:** Statix is pre-alpha and not recommended for production use
+
+> 💡 **RECOMMENDATION:** Hugo is often a better option than Statix. See [Build and Deploy a Hugo Site with GitHub Actions](https://swharden.com/blog/2022-03-20-github-actions-hugo/)
 
 ## Features
 
